@@ -1,8 +1,27 @@
 # danrepo
-Personal Portage Overlay for share
+Personal Gentoo Linux Portage Overlay for share
 
-## Include:
-### media-gfx/mtpaint - Simple GTK+2 painting program
-### sys-fs/exfat-linux - exFAT filesystem module for Linux kernel
-### sys-fs/exfat-nofuse - Non-fuse kernel driver for exFat and VFat file systems
-### x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit
+## How to use this overlay with local overlays:
+[Local overlays](https://wiki.gentoo.org/wiki/Overlay/Local_overlay) should be managed via `/etc/portage/repos.conf/`.
+To enable this overlay make sure you are using a recent Portage version (at least `2.2.14`), and create a `/etc/portage/repos.conf/danrepo.conf` file containing precisely:
+
+```
+[danrepo]
+location = /usr/local/portage/danrepo
+sync-type = git
+sync-uri = https://github.com/ferion11/danrepo.git
+priority=9999
+```
+
+Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all our ebuilds available.
+
+### Include:
+* media-gfx/mtpaint - Simple GTK+2 painting program (git, but release only)
+* sys-fs/exfat-linux - exFAT filesystem module for Linux kernel (new and updated)
+* sys-fs/exfat-nofuse - Non-fuse kernel driver for exFat and VFat file systems (old, but fixed)
+* x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit
+
+### Installation
+After performing those steps, the following should work (or any other package from this overlay):
+
+	sudo emerge -av sys-fs/exfat-linux
