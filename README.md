@@ -1,5 +1,5 @@
 # danrepo
-Personal Gentoo Linux Portage Overlay for share
+Gentoo Linux - Personal Portage Overlay
 
 ## How to use this overlay with local overlays:
 [Local overlays](https://wiki.gentoo.org/wiki//etc/portage/repos.conf) should be managed via `/etc/portage/repos.conf/`.
