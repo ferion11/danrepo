@@ -2,7 +2,7 @@
 Personal Gentoo Linux Portage Overlay for share
 
 ## How to use this overlay with local overlays:
-[Local overlays](https://wiki.gentoo.org/wiki/Overlay/Local_overlay) should be managed via `/etc/portage/repos.conf/`.
+[Local overlays](https://wiki.gentoo.org/wiki//etc/portage/repos.conf) should be managed via `/etc/portage/repos.conf/`.
 To enable this overlay make sure you are using a recent Portage version (at least `2.2.14`), and create a `/etc/portage/repos.conf/danrepo.conf` file containing precisely:
 
 ```
