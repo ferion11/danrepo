@@ -16,10 +16,11 @@ priority=9999
 Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all our ebuilds available.
 
 ### Include:
-* media-gfx/mtpaint - Simple GTK+2 painting program (git, but release only)
-* sys-fs/exfat-linux - exFAT filesystem module for Linux kernel (new and updated)
-* sys-fs/exfat-nofuse - Non-fuse kernel driver for exFat and VFat file systems (old, but fixed)
-* x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit
+* media-gfx/mtpaint - Simple GTK+2 painting program (git, but release only).
+* sys-fs/exfat-linux - exFAT filesystem module for Linux kernel (new and updated).
+* sys-fs/exfat-nofuse - Non-fuse kernel driver for exFat and VFat file systems (old, but fixed).
+* x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit.
+* media-fonts/ttf-wps-fonts - These are the symbol fonts required by app-office/wps-office.
 
 ### Installation
 After performing those steps, the following should work (or any other package from this overlay):
