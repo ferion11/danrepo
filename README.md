@@ -21,6 +21,8 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * sys-fs/exfat-nofuse - Non-fuse kernel driver for exFat and VFat file systems (old, but fixed).
 * x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit.
 * media-fonts/ttf-wps-fonts - These are the symbol fonts required by app-office/wps-office.
+* x11-misc/xfe - Light file manager removed from gentoo.
+* x11-libs/fox - FoxToolkit for the Xfe.
 
 ### Installation
 After performing those steps, the following should work (or any other package from this overlay):
