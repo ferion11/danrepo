@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		YAD - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity. Program allows you to display GTK+ dialog boxes from command line or shell scripts.
+	</longdescription>
+</pkgmetadata>

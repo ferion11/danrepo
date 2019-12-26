@@ -21,6 +21,7 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * sys-fs/exfat-nofuse - Non-fuse kernel driver for exFat and VFat file systems (old, but fixed).
 * x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit.
 * media-fonts/ttf-wps-fonts - These are the symbol fonts required by app-office/wps-office.
+* gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
 * x11-misc/xfe - Light file manager removed from gentoo.
 * x11-libs/fox - C++ Toolkit for developing Graphical User Interfaces easily and effectively. For the Xfe.
 * dev-util/reswrap - Utility to wrap icon resources into C++ code, from the FOX Toolkit. For the Xfe.
