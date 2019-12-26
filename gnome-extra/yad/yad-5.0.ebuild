@@ -1,8 +1,8 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
-inherit eutils
+EAPI="5"
+inherit eutils xdg-utils
 
 DESCRIPTION="A tool for creating graphical dialogs from shell scripts. Fork of zenity."
 HOMEPAGE="https://github.com/v1cont/yad"
@@ -27,6 +27,13 @@ src_prepare() {
 }
 
 src_configure() {
-	econf \
-		--disable-deprecated
+	econf
+}
+
+pkg_postinst() {
+	xdg_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_icon_cache_update
 }
