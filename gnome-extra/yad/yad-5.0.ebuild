@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
-inherit eutils xdg-utils
+inherit eutils xdg-utils gnome2-utils
 
 DESCRIPTION="A tool for creating graphical dialogs from shell scripts. Fork of zenity."
 HOMEPAGE="https://github.com/v1cont/yad"
@@ -32,8 +32,10 @@ src_configure() {
 
 pkg_postinst() {
 	xdg_icon_cache_update
+	gnome2_schemas_update
 }
 
 pkg_postrm() {
 	xdg_icon_cache_update
+	gnome2_schemas_update
 }
