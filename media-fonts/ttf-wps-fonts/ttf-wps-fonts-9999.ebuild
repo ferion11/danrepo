@@ -9,6 +9,7 @@ DESCRIPTION="Symbol fonts required by wps-office."
 HOMEPAGE="https://github.com/ferion11/ttf-wps-fonts"
 
 EGIT_REPO_URI="https://github.com/ferion11/ttf-wps-fonts.git"
+EGIT_CLONE_TYPE="shallow"
 
 LICENSE="MSttfEULA"
 SLOT="0"

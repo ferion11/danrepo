@@ -9,6 +9,7 @@ DESCRIPTION="exFAT filesystem module for Linux kernel"
 HOMEPAGE="https://github.com/arter97/exfat-linux"
 
 EGIT_REPO_URI="https://github.com/arter97/exfat-linux"
+EGIT_CLONE_TYPE="shallow"
 
 LICENSE="GPL-2+"
 SLOT="0"

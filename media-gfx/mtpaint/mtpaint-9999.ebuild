@@ -9,6 +9,7 @@ DESCRIPTION="Simple GTK+2 painting program"
 HOMEPAGE="https://github.com/wjaguar/mtPaint"
 
 EGIT_REPO_URI="https://github.com/wjaguar/mtPaint.git"
+EGIT_CLONE_TYPE="shallow"
 
 LICENSE="GPL-3"
 SLOT="0"
