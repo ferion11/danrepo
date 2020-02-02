@@ -22,6 +22,7 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit.
 * media-fonts/ttf-wps-fonts - These are the symbol fonts required by app-office/wps-office.
 * gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
+* net-misc/zsync2 - zsync2 is one improved version of zsync.
 
 ### Installation
 After performing those steps, the following should work (or any other package from this overlay):

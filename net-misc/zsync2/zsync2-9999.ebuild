@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -23,10 +23,6 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 
-src_prepare() {
-	git submodule update --init
-}
-
 src_compile() {
 	mkdir build
 	cd build
@@ -36,5 +32,5 @@ src_compile() {
 
 src_install() {
 	cd build
-	emake install DESTDIR=${D}
+	emake install DESTDIR="${D}"
 }
