@@ -23,6 +23,7 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * media-fonts/ttf-wps-fonts - These are the symbol fonts required by app-office/wps-office.
 * gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
 * net-misc/zsync2 - zsync2 is one improved version of zsync.
+* sys-auth/polkit - Polkit with duktape flag to replace spidermonkey.
 
 ### Installation
 After performing those steps, the following should work (or any other package from this overlay):
