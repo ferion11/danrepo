@@ -1,4 +1,4 @@
-[![Gentoo Badge](https://www.gentoo.org/assets/img/badges/gentoo-badge.png)](https://github.com/ferion11/danrepo)
+[![Gentoo Badge](https://www.gentoo.org/assets/img/badges/gentoo-badge.png)](https://www.gentoo.org)
 
 # danrepo
 
