@@ -1,5 +1,8 @@
+[![Gentoo Badge](https://www.gentoo.org/assets/img/badges/gentoo-badge.png)](https://github.com/ferion11/danrepo)
+
 # danrepo
-Gentoo Linux - Personal Portage Overlay
+
+>  Gentoo Linux - Personal Portage Overlay
 
 ## How to use this overlay with local overlays:
 [Local overlays](https://wiki.gentoo.org/wiki//etc/portage/repos.conf) should be managed via `/etc/portage/repos.conf/`.
@@ -15,7 +18,7 @@ priority=9999
 
 Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all our ebuilds available.
 
-### Include:
+###  Include:
 * media-gfx/mtpaint - Simple GTK+2 painting program (git, but release only).
 * sys-fs/exfat-linux - exFAT filesystem module for Linux kernel (new and updated).
 * sys-fs/exfat-nofuse - Non-fuse kernel driver for exFat and VFat file systems (old, but fixed).
@@ -25,7 +28,9 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * net-misc/zsync2 - zsync2 is one improved version of zsync.
 * sys-auth/polkit - Polkit with duktape flag to replace spidermonkey.
 
-### Installation
+###  Installation
 After performing those steps, the following should work (or any other package from this overlay):
 
-	sudo emerge -av sys-fs/exfat-linux
+```
+sudo emerge -av sys-fs/exfat-linux
+```
