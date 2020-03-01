@@ -10,7 +10,7 @@ To enable this overlay make sure you are using a recent Portage version (at leas
 
 ```
 [danrepo]
-location = /usr/local/portage/danrepo
+location = /var/db/repos/danrepo
 sync-type = git
 sync-uri = https://github.com/ferion11/danrepo.git
 priority=9999
