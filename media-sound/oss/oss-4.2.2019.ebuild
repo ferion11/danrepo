@@ -1,11 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="7"
 
-inherit eutils flag-o-matic versionator linux-mod
+inherit eutils flag-o-matic linux-mod
 
-MY_P="oss-v$(get_version_component_range 1-2)-build$(get_version_component_range 3)-src-gpl"
+MY_P="oss-v$(ver_cut 1-2)-build$(ver_cut 3)-src-gpl"
 
 DESCRIPTION="Open Sound System - portable, mixing-capable, high quality sound system for Unix"
 HOMEPAGE="http://developer.opensound.com"
@@ -52,12 +52,12 @@ src_prepare() {
 			-i "${S}/configure" || die
 	fi
 
-	if use pax_kernel ; then
-		epatch "${FILESDIR}/pax_kernel.patch"
-	fi
-
 	# Adding patch ossdetect with glibc starting with version 2.23
-	epatch "${FILESDIR}/${P}-sys-libs_glibc-2.23_ossdetect_fix.patch"
+	eapply "${FILESDIR}/${P}-sys-libs_glibc-2.23_ossdetect_fix.patch"
+
+	if use pax_kernel ; then
+		eapply "${FILESDIR}/pax_kernel.patch"
+	fi
 
 	for deprecated_card in ${DEPRECATED_CARDS} ; do
 		ln -s "${S}/attic/drv/oss_${deprecated_card}" "${S}/kernel/drv/oss_${deprecated_card}"
@@ -76,10 +76,12 @@ src_prepare() {
 		-i "${S}/setup/Linux/build.sh" || die
 
 	# Remove bundled libflashsupport. Deprecated since 2006.
-	rm ${S}/oss/lib/flashsupport.c || die
+	rm "${S}/oss/lib/flashsupport.c" || die
 	sed -e "/^.*flashsupport.c .*/d" \
 		-i "${S}/setup/Linux/build.sh" \
 		-i "${S}/setup/Linux/oss/build/install.sh" || die
+
+	eapply_user
 }
 
 src_configure() {
@@ -123,7 +125,7 @@ src_install() {
 		dosym oss/lib/${oss_lib} /usr/${libdir}/${oss_lib} || die
 	done
 
-	dosym /usr/${libdir}/oss/include /usr/include/oss || die
+	dosym ../../${libdir}/oss/include /usr/include/oss || die
 }
 
 pkg_postinst() {
