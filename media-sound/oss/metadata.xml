@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="midi">Experimental MIDI support</flag>
+		<flag name="pax_kernel">for hardened profile</flag>
+		<flag name="vmix_fixedpoint">Use FIXEDPOINT for vmix</flag>
+		
+		<flag name="oss_cards_ali5455">Suport for ali5455 card</flag>
+		<flag name="oss_cards_atiaudio">Suport for atiaudio card</flag>
+		<flag name="oss_cards_audigyls">Suport for audigyls card</flag>
+		<flag name="oss_cards_audiocs">Suport for audiocs card</flag>
+		<flag name="oss_cards_audioloop">Suport for audioloop card</flag>
+		<flag name="oss_cards_audiopci">Suport for audiopci card</flag>
+		<flag name="oss_cards_cmi878x">Suport for cmi878x card</flag>
+		<flag name="oss_cards_cmpci">Suport for cmpci card</flag>
+		<flag name="oss_cards_cs4281">Suport for cs4281 card</flag>
+		<flag name="oss_cards_cs461x">Suport for cs461x card</flag>
+		<flag name="oss_cards_digi96">Suport for digi96 card</flag>
+		<flag name="oss_cards_emu10k1x">Suport for emu10k1x card</flag>
+		<flag name="oss_cards_envy24">Suport for envy24 card</flag>
+		<flag name="oss_cards_envy24ht">Suport for envy24ht card</flag>
+		<flag name="oss_cards_fmedia">Suport for fmedia card</flag>
+		<flag name="oss_cards_geode">Suport for geode card</flag>
+		<flag name="oss_cards_hdaudio">Suport for hdaudio card</flag>
+		<flag name="oss_cards_ich">Suport for ich card</flag>
+		<flag name="oss_cards_imux">Suport for imux card</flag>
+		<flag name="oss_cards_madi">Suport for madi card</flag>
+		<flag name="oss_cards_midiloop">Suport for midiloop card</flag>
+		<flag name="oss_cards_midimix">Suport for midimix card</flag>
+		<flag name="oss_cards_sblive">Suport for sblive card</flag>
+		<flag name="oss_cards_sbpci">Suport for sbpci card</flag>
+		<flag name="oss_cards_sbxfi">Suport for sbxfi card</flag>
+		<flag name="oss_cards_solo">Suport for solo card</flag>
+		<flag name="oss_cards_trident">Suport for trident card</flag>
+		<flag name="oss_cards_usb">Suport for usb card</flag>
+		<flag name="oss_cards_userdev">Suport for userdev card</flag>
+		<flag name="oss_cards_via823x">Suport for via823x card</flag>
+		<flag name="oss_cards_via97">Suport for via97 card</flag>
+		<flag name="oss_cards_ymf7xx">Suport for ymf7xx card</flag>
+		<flag name="oss_cards_allegro">Suport for allegro card</flag>
+		<flag name="oss_cards_als3xx">Suport for als3xx card</flag>
+		<flag name="oss_cards_als4k">Suport for als4k card</flag>
+		<flag name="oss_cards_digi32">Suport for digi32 card</flag>
+		<flag name="oss_cards_maestro">Suport for maestro card</flag>
+		<flag name="oss_cards_neomagic">Suport for neomagic card</flag>
+		<flag name="oss_cards_s3vibes">Suport for s3vibes card</flag>
+		<flag name="oss_cards_vortex">Suport for vortex card</flag>
+	</use>
+</pkgmetadata>
