@@ -127,6 +127,7 @@ src_compile() {
 
 	cd "${WORKDIR}/build/prototype/usr/lib/oss/build"
 	cp -f ../objects/osscore.o osscore_mainline.o
+	ln -s .osscore.o.cmd .osscore_mainline.o.cmd
 	rm -f Makefile
 	sed -i "1s/.*/OSSLIBDIR\=../" Makefile.osscore
 	sed -i 's/\/usr/..\/..\/../g' Makefile.osscore
@@ -149,6 +150,21 @@ src_compile() {
 	else
 		echo > osscore_symbols.inc
 	fi
+
+	sed -i "1s/.*/OSSLIBDIR\=../" Makefile.tmpl
+
+	for n in ../modules/*.o
+	do
+		N=`basename "${n}" .o`
+		echo "Building module ${N}"
+		rm -f "${N}_mainline.o"  "${N}_lnk.c" Makefile
+		sed "s/MODNAME/${N}/g" < Makefile.tmpl > Makefile
+		ln -s "${N}.c" "${N}_lnk.c"
+		ln -s "${n}" "${N}_mainline.o"
+		ln -s .oss_hdaudio.o.cmd .oss_hdaudio_mainline.o.cmd
+
+		emake KERNELDIR="$KERNELDIR" > build.list
+	done
 }
 
 src_install() {
