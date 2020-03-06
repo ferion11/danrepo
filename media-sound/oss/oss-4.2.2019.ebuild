@@ -116,9 +116,7 @@ src_compile() {
 	filter-flags -fPIC # FL-1536
 
 	cd "${WORKDIR}/build" && emake build || die
-}
 
-src_install() {
 	OSSLIBDIR="/usr/lib/oss"
 	UNAME=`uname -r`
 	KERNELDIR="/lib/modules/$UNAME/build"
@@ -138,9 +136,10 @@ src_install() {
 	ln -s osscore.c osscore_lnk.c
 	ln -s ../include/internals/*.h ./
 	ln -s ../include/sys/*.h ./
-	make KERNELDIR="$KERNELDIR" > build.list
-	#-------------------------------------------------------------
+	emake KERNELDIR="$KERNELDIR" > build.list
+}
 
+src_install() {
 	newinitd "${FILESDIR}/init.d/oss" oss || die
 	#doenvd "${FILESDIR}/env.d/99oss" || die
 
