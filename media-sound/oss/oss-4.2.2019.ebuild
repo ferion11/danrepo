@@ -52,12 +52,15 @@ src_prepare() {
 			-i "${S}/configure" || die
 	fi
 
+	#NOTE: getting goods patchs guides for oss4 from: http://ossnext.trueinstruments.com/forum/viewforum.php?f=3
+
 	# Adding patch ossdetect with glibc starting with version 2.23
 	eapply "${FILESDIR}/${P}-sys-libs_glibc-2.23_ossdetect_fix.patch"
 
 	# Adding patch to work with kernel 5.3.0
 	eapply "${FILESDIR}/${P}-kernel503.patch"
 
+	eapply "${FILESDIR}/${P}-noPIC.patch"
 	eapply "${FILESDIR}/${P}-as-needed-strip.patch"
 
 	if use pax_kernel ; then
@@ -130,6 +133,11 @@ src_install() {
 	sed -i "1s/.*/OSSLIBDIR\=../" Makefile.osscore
 	sed -i 's/\/usr/..\/..\/../g' Makefile.osscore
 	ln -s Makefile.osscore Makefile
+	cp -f ../objects/osscore.o osscore_mainline.o
+	rm -f osscore_lnk.c
+	ln -s osscore.c osscore_lnk.c
+	ln -s ../include/internals/*.h ./
+	ln -s ../include/sys/*.h ./
 	make KERNELDIR="$KERNELDIR" > build.list
 	#-------------------------------------------------------------
 
