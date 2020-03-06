@@ -55,6 +55,9 @@ src_prepare() {
 	# Adding patch ossdetect with glibc starting with version 2.23
 	eapply "${FILESDIR}/${P}-sys-libs_glibc-2.23_ossdetect_fix.patch"
 
+	# Adding patch to work with kernel 5.3.0
+	eapply "${FILESDIR}/${P}-kernel503.patch"
+
 	eapply "${FILESDIR}/${P}-as-needed-strip.patch"
 
 	if use pax_kernel ; then
