@@ -55,6 +55,8 @@ src_prepare() {
 	# Adding patch ossdetect with glibc starting with version 2.23
 	eapply "${FILESDIR}/${P}-sys-libs_glibc-2.23_ossdetect_fix.patch"
 
+	eapply "${FILESDIR}/${P}-as-needed-strip.patch"
+
 	if use pax_kernel ; then
 		eapply "${FILESDIR}/pax_kernel.patch"
 	fi
@@ -88,8 +90,8 @@ src_configure() {
 	local oss_config="$(use alsa && echo || echo --enable-libsalsa=NO)
 		--config-midi=$(use midi && echo YES || echo NO)
 		--config-vmix=$(use vmix_fixedpoint && echo FIXEDPOINT || echo FLOAT)
+		--no-regparm
 		--only-drv=osscore"
-
 	for card in ${CARDS} ; do
 		if use oss_cards_${card} ; then
 			oss_config+=",oss_${card}"
@@ -107,13 +109,26 @@ src_compile() {
 
 	cd "${WORKDIR}/build" && emake build || die
 
-	BUILD_PARAMS="KDIR=${KV_OUT_DIR} M=${S}"
-	linux-mod_src_compile
+	OSSLIBDIR="/usr/lib/oss"
+	UNAME=`uname -r`
+	KERNELDIR="/lib/modules/$UNAME/build"
+
+	cd "${WORKDIR}/build/prototype/usr/lib/oss"
+	ln -s objects.noregparm objects
+	ln -s modules.noregparm modules
+
+	cd "${WORKDIR}/build/prototype/usr/lib/oss/build"
+	cp -f ../objects/osscore.o osscore_mainline.o
+	rm -f Makefile
+	sed -i "1s/.*/OSSLIBDIR\=../" Makefile.osscore
+	sed -i 's/\/usr/..\/..\/../g' Makefile.osscore
+	ln -s Makefile.osscore Makefile
+	make KERNELDIR="$KERNELDIR" > build.list
 }
 
 src_install() {
 	newinitd "${FILESDIR}/init.d/oss" oss || die
-	doenvd "${FILESDIR}/env.d/99oss" || die
+	#doenvd "${FILESDIR}/env.d/99oss" || die
 
 	cp -R "${WORKDIR}"/build/prototype/* "${D}" || die
 
