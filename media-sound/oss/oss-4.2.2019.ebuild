@@ -106,6 +106,9 @@ src_compile() {
 	filter-flags -fPIC # FL-1536
 
 	cd "${WORKDIR}/build" && emake build || die
+
+	BUILD_PARAMS="KDIR=${KV_OUT_DIR} M=${S}"
+	linux-mod_src_compile
 }
 
 src_install() {
@@ -122,10 +125,10 @@ src_install() {
 	use alsa && oss_libs+=" libsalsa.so.2.0.0"
 
 	for oss_lib in ${oss_libs} ; do
-		dosym oss/lib/${oss_lib} /usr/${libdir}/${oss_lib} || die
+		dosym oss/lib/${oss_lib} /usr/lib/${oss_lib} || die
 	done
 
-	dosym ../../${libdir}/oss/include /usr/include/oss || die
+	dosym ../lib/oss/include /usr/include/oss || die
 }
 
 pkg_postinst() {
