@@ -3,7 +3,7 @@
 
 EAPI="7"
 
-inherit eutils flag-o-matic linux-mod
+inherit eutils flag-o-matic linux-mod linux-info
 
 MY_P="oss-v$(ver_cut 1-2)-build$(ver_cut 3)-src-gpl"
 
@@ -102,13 +102,17 @@ src_configure() {
 
 	sed -e "s;'#define CONFIG_OSS_GRC_MAX_QUALITY 3';'#define CONFIG_OSS_GRC_MAX_QUALITY 6';" \
 		-i "${WORKDIR}/build/kernel/framework/include/local_config.h" || die
+
+	set_arch_to_kernel
 }
 
 src_compile() {
 	filter-flags -fPIC # FL-1536
 
 	cd "${WORKDIR}/build" && emake build || die
+}
 
+src_install() {
 	OSSLIBDIR="/usr/lib/oss"
 	UNAME=`uname -r`
 	KERNELDIR="/lib/modules/$UNAME/build"
@@ -124,9 +128,8 @@ src_compile() {
 	sed -i 's/\/usr/..\/..\/../g' Makefile.osscore
 	ln -s Makefile.osscore Makefile
 	make KERNELDIR="$KERNELDIR" > build.list
-}
+	#-------------------------------------------------------------
 
-src_install() {
 	newinitd "${FILESDIR}/init.d/oss" oss || die
 	#doenvd "${FILESDIR}/env.d/99oss" || die
 
