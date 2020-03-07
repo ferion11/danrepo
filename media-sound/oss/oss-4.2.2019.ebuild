@@ -61,6 +61,8 @@ src_prepare() {
 	eapply "${FILESDIR}/${P}-kernel503.patch"
 
 	eapply "${FILESDIR}/${P}-galaxy.patch"
+	eapply "${FILESDIR}/${P}-ossvermagic.patch"
+	eapply "${FILESDIR}/${P}-seawright.patch"
 	eapply "${FILESDIR}/${P}-as-needed-strip.patch"
 
 	if use pax_kernel ; then
