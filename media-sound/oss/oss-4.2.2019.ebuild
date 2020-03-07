@@ -163,7 +163,7 @@ src_compile() {
 		sed "s/MODNAME/${N}/g" < Makefile.tmpl > Makefile
 		ln -s "${N}.c" "${N}_lnk.c"
 		ln -s "${n}" "${N}_mainline.o"
-		ln -s .oss_hdaudio.o.cmd .oss_hdaudio_mainline.o.cmd
+		ln -s ".${N}.o.cmd" ".${N}_mainline.o.cmd"
 
 		emake KERNELDIR="$KERNELDIR" > build.list
 	done
