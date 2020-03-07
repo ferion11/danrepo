@@ -53,6 +53,8 @@ src_prepare() {
 	fi
 
 	#NOTE: getting goods patchs guides for oss4 from: http://ossnext.trueinstruments.com/forum/viewforum.php?f=3
+	#INFO1: https://stackoverflow.com/questions/7812418/kernel-driver-external-modules-not-building-completely
+	#INFO2: https://www.kernel.org/doc/html/latest/kbuild/modules.html
 
 	# Adding patch ossdetect with glibc starting with version 2.23
 	eapply "${FILESDIR}/${P}-sys-libs_glibc-2.23_ossdetect_fix.patch"
@@ -154,6 +156,7 @@ src_compile() {
 	fi
 
 	sed -i "1s/.*/OSSLIBDIR\=../" Makefile.tmpl
+	cp Module.symvers "${WORKDIR}/"
 
 	for n in ../modules/*.o
 	do
@@ -165,13 +168,14 @@ src_compile() {
 		ln -s "${n}" "${N}_mainline.o"
 		ln -s ".${N}.o.cmd" ".${N}_mainline.o.cmd"
 
+		sed -i '2iKBUILD_EXTRA_SYMBOLS=${WORKDIR}/Module.symvers' Makefile
 		emake KERNELDIR="$KERNELDIR" > build.list
 	done
 }
 
 src_install() {
 	mkdir -p "${D}/lib/modules/${KV_FULL}/kernel/oss"
-	cp -f "${WORKDIR}/build/prototype/usr/lib/oss/build/osscore.ko" "${D}/lib/modules/${KV_FULL}/kernel/oss/"
+	cp -f "${WORKDIR}/build/prototype/usr/lib/oss/build/*.ko" "${D}/lib/modules/${KV_FULL}/kernel/oss/"
 
 	newinitd "${FILESDIR}/init.d/oss" oss || die
 	#doenvd "${FILESDIR}/env.d/99oss" || die
