@@ -93,6 +93,9 @@ src_prepare() {
 		-i "${S}/setup/Linux/build.sh" \
 		-i "${S}/setup/Linux/oss/build/install.sh" || die
 
+	sed -e s/"| gzip -9"//g -i "${S}/setup/Linux/build.sh"
+	sed -e s/"\.gz"//g -i "${S}/setup/Linux/build.sh"
+
 	eapply_user
 }
 
