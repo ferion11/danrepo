@@ -60,7 +60,7 @@ src_prepare() {
 	# Adding patch to work with kernel 5.3.0
 	eapply "${FILESDIR}/${P}-kernel503.patch"
 
-	eapply "${FILESDIR}/${P}-noPIC.patch"
+	eapply "${FILESDIR}/${P}-galaxy.patch"
 	eapply "${FILESDIR}/${P}-as-needed-strip.patch"
 
 	if use pax_kernel ; then
