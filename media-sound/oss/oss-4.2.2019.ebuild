@@ -177,8 +177,8 @@ src_compile() {
 }
 
 src_install() {
-	#mkdir -p "${D}/lib/modules/${KV_FULL}/kernel/oss"
-	#cp -f "${WORKDIR}"/build/prototype/usr/lib/oss/build/*.ko "${D}/lib/modules/${KV_FULL}/kernel/oss/"
+	mkdir -p "${D}/lib/modules/${KV_FULL}/kernel/oss"
+	cp -f "${WORKDIR}"/build/prototype/usr/lib/oss/build/*.ko "${D}/lib/modules/${KV_FULL}/kernel/oss/"
 
 	newinitd "${FILESDIR}/init.d/oss" oss || die
 	#doenvd "${FILESDIR}/env.d/99oss" || die
