@@ -1,7 +1,7 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="7"
 inherit eutils xdg-utils gnome2-utils
 
 DESCRIPTION="A tool for creating graphical dialogs from shell scripts. Fork of zenity."
@@ -23,7 +23,8 @@ DEPEND="${RDEPEND}
 		app-arch/xz-utils"
 
 src_prepare() {
-	epatch_user
+	# apply user patchs
+	eapply_user
 }
 
 src_configure() {
