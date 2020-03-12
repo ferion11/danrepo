@@ -27,7 +27,6 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
 * net-misc/zsync2 - zsync2 is one improved version of zsync.
 * sys-auth/polkit - Polkit with duktape flag to replace spidermonkey.
-* media-sound/oss - Open Sound System v4 - portable, mixing-capable, high quality sound system for Unix.
 
 ###  Installation
 After performing those steps, the following should work (or any other package from this overlay):
