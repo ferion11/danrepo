@@ -27,7 +27,7 @@ src_prepare() {
 	sed -e "s/-isystem \$(MULTIARCH_PATH)//" \
 		-e "/^MULTIARCH_PATH/d" \
 		-i usr/src/oss4-${MY_PV}-build${BUILD}/{core,drivers}/Makefile || die
-	
+
 	eapply_user
 }
 
@@ -36,20 +36,26 @@ src_configure() {
 }
 
 src_compile() {
-	cd usr/src/oss4-${MY_PV}-build${BUILD}
-	cp /usr/include/linux/limits.h core
-	echo "KV_DIR: ${KV_DIR}"
-	#emake -C "${KV_DIR}" SUBDIRS="$(pwd)"/core modules
-	#emake -C drivers osscore_symbols.inc
+	cd "usr/src/oss4-${MY_PV}-build${BUILD}/core"
+	cp /usr/include/linux/limits.h ./
+	# Maybe need 'sed' to replace "EXTRA_CFLAGS" with "ccflags-y" on Makefile
+	emake -C "/lib/modules/${KV_FULL}/build" M="$(pwd)" modules
+
+	cd "../"
+	emake -C drivers osscore_symbols.inc
+
+	cd "drivers"
+	emake -C "/lib/modules/${KV_FULL}/build" M="$(pwd)" modules
 	#emake -C "${KV_DIR}" SUBDIRS="$(pwd)"/drivers modules
 }
 
 src_install() {
 	cd usr/src/oss4-${MY_PV}-build${BUILD}
-	insinto /lib/modules/${KV_FULL}/kernel/sound/core
+	#insinto /lib/modules/${KV_FULL}/kernel/sound/core
+	insinto /lib/modules/${KV_FULL}/kernel/sound/oss
 	doins core/osscore.${KV_OBJ}
 
-	insinto /lib/modules/${KV_FULL}/kernel/sound/pci
+	#insinto /lib/modules/${KV_FULL}/kernel/sound/pci
 	doins drivers/*.${KV_OBJ}
 }
 
