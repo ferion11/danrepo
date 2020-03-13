@@ -45,8 +45,10 @@ src_compile() {
 	emake -C drivers osscore_symbols.inc
 
 	cd "drivers"
+	rm Module.symvers
+	cp ../core/Module.symvers ./
+	sed -i "/^EXTRA_CFLAGS=.*/i KBUILD_EXTRA_SYMBOLS=${PWD}/Module.symvers" Makefile
 	emake -C "/lib/modules/${KV_FULL}/build" M="$(pwd)" modules
-	#emake -C "${KV_DIR}" SUBDIRS="$(pwd)"/drivers modules
 }
 
 src_install() {
