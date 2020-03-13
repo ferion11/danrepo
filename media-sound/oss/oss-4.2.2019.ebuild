@@ -15,25 +15,15 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-DEPRECATED_CARDS="allegro als3xx als4k digi32 maestro neomagic s3vibes vortex"
-
-CARDS="ali5455 atiaudio audigyls audiocs audioloop audiopci cmi878x cmpci cs4281 cs461x
-	digi96 emu10k1x envy24 envy24ht fmedia geode hdaudio ich imux madi midiloop
-	midimix sblive sbpci sbxfi solo trident usb userdev via823x via97 ymf7xx
-	${DEPRECATED_CARDS}"
-
-IUSE="alsa gtk midi ogg pax_kernel vmix_fixedpoint"
-
-for card in ${CARDS} ; do
-	IUSE+=" oss_cards_${card}"
-done
+IUSE="libsalsa midi ogg oss_driver pax_kernel vmix_fixedpoint"
 
 RESTRICT="mirror"
 
 DEPEND="!media-sound/oss-devel
-	alsa? ( media-libs/alsa-lib )
-	gtk? ( x11-libs/gtk+:2 )
+	libsalsa? ( media-libs/alsa-lib )
+	x11-libs/gtk+:2
 	ogg? ( media-libs/libvorbis )
+	oss_driver? ( media-sound/oss-driver )
 	sys-apps/gawk
 	sys-kernel/linux-headers"
 
@@ -46,6 +36,8 @@ src_prepare() {
 
 	einfo "Replacing init script with gentoo friendly one ..."
 	cp "${FILESDIR}/init.d/oss" "${S}/setup/Linux/oss/etc/S89oss" || die
+	cp "${FILESDIR}/sbin/soundon" "${S}/setup/Linux/sbin/soundon" || die
+	cp "${FILESDIR}/sbin/soundoff" "${S}/setup/Linux/sbin/soundoff" || die
 
 	if ! use ogg ; then
 		sed -e "s;OGG_SUPPORT=YES;OGG_SUPPORT=NO;g" \
@@ -53,8 +45,6 @@ src_prepare() {
 	fi
 
 	#NOTE: getting goods patchs guides for oss4 from: http://ossnext.trueinstruments.com/forum/viewforum.php?f=3
-	#INFO1: https://stackoverflow.com/questions/7812418/kernel-driver-external-modules-not-building-completely
-	#INFO2: https://www.kernel.org/doc/html/latest/kbuild/modules.html
 
 	# Adding patch ossdetect with glibc starting with version 2.23
 	eapply "${FILESDIR}/${P}-sys-libs_glibc-2.23_ossdetect_fix.patch"
@@ -100,16 +90,11 @@ src_prepare() {
 }
 
 src_configure() {
-	local oss_config="$(use alsa && echo || echo --enable-libsalsa=NO)
+	local oss_config="$(use libsalsa && echo || echo --enable-libsalsa=NO)
 		--config-midi=$(use midi && echo YES || echo NO)
 		--config-vmix=$(use vmix_fixedpoint && echo FIXEDPOINT || echo FLOAT)
 		--no-regparm
 		--only-drv=osscore"
-	for card in ${CARDS} ; do
-		if use oss_cards_${card} ; then
-			oss_config+=",oss_${card}"
-		fi
-	done
 
 	cd "${WORKDIR}/build" && "${S}/configure" ${oss_config} || die
 
@@ -142,7 +127,7 @@ src_install() {
 	doins "${FILESDIR}"/OSSlib.pc || die
 
 	local oss_libs="libOSSlib.so libossmix.so"
-	use alsa && oss_libs+=" libsalsa.so.2.0.0"
+	use libsalsa && oss_libs+=" libsalsa.so.2.0.0"
 
 	for oss_lib in ${oss_libs} ; do
 		dosym oss/lib/${oss_lib} /usr/lib/${oss_lib} || die
@@ -159,4 +144,3 @@ pkg_postinst() {
 	ewarn "In case of upgrading from a previous build or reinstalling current one"
 	ewarn "You might need to remove /lib/modules/${KV_FULL}/kernel/oss"
 }
-
