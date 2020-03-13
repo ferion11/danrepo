@@ -124,62 +124,14 @@ src_compile() {
 
 	cd "${WORKDIR}/build" && emake build || die
 
-	OSSLIBDIR="/usr/lib/oss"
-	UNAME=`uname -r`
-	KERNELDIR="/lib/modules/$UNAME/build"
-
 	cd "${WORKDIR}/build/prototype/usr/lib/oss"
 	ln -s objects.noregparm objects
 	ln -s modules.noregparm modules
 
-	cd "${WORKDIR}/build/prototype/usr/lib/oss/build"
-	cp -f ../objects/osscore.o osscore_mainline.o
-	ln -s .osscore.o.cmd .osscore_mainline.o.cmd
-	rm -f Makefile
-	sed -i "1s/.*/OSSLIBDIR\=../" Makefile.osscore
-	sed -i 's/\/usr/..\/..\/../g' Makefile.osscore
-	ln -s Makefile.osscore Makefile
-	cp -f ../objects/osscore.o osscore_mainline.o
-	rm -f osscore_lnk.c
-	ln -s osscore.c osscore_lnk.c
-	ln -s ../include/internals/*.h ./
-	ln -s ../include/sys/*.h ./
-	emake KERNELDIR="$KERNELDIR" > build.list
-	rm -f osscore_lnk.c
-
-	if [ -f Module.symvers ] ; then
-		#Take generated symbol information and add it to module.inc
-		echo "static const struct modversion_info ____versions[]" > osscore_symbols.inc
-		echo " __attribute__((used))" >> osscore_symbols.inc
-		echo "__attribute__((section(\"__versions\"))) = {" >> osscore_symbols.inc
-		sed -e "s:^:{:" -e "s:\t:, \":" -e "s:\t\(.\)*:\"},:" < Module.symvers >> osscore_symbols.inc
-		echo "};" >> osscore_symbols.inc
-	else
-		echo > osscore_symbols.inc
-	fi
-
-	sed -i "1s/.*/OSSLIBDIR\=../" Makefile.tmpl
-	cp Module.symvers "${WORKDIR}/"
-
-	for n in ../modules/*.o
-	do
-		N=`basename "${n}" .o`
-		echo "Building module ${N}"
-		rm -f "${N}_mainline.o"  "${N}_lnk.c" Makefile
-		sed "s/MODNAME/${N}/g" < Makefile.tmpl > Makefile
-		ln -s "${N}.c" "${N}_lnk.c"
-		ln -s "${n}" "${N}_mainline.o"
-		ln -s ".${N}.o.cmd" ".${N}_mainline.o.cmd"
-
-		sed -i '2iKBUILD_EXTRA_SYMBOLS=${WORKDIR}/Module.symvers' Makefile
-		emake KERNELDIR="$KERNELDIR" > build.list
-	done
+	rm -rf "${WORKDIR}/build/prototype/usr/lib/oss/build"
 }
 
 src_install() {
-	mkdir -p "${D}/lib/modules/${KV_FULL}/kernel/oss"
-	cp -f "${WORKDIR}"/build/prototype/usr/lib/oss/build/*.ko "${D}/lib/modules/${KV_FULL}/kernel/oss/"
-
 	newinitd "${FILESDIR}/init.d/oss" oss || die
 	#doenvd "${FILESDIR}/env.d/99oss" || die
 
@@ -200,9 +152,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	UPDATE_MODULEDB=true
-	linux-mod_pkg_postinst
-
 	ewarn "In order to use OSSv4 you must run"
 	ewarn "/etc/init.d/oss start"
 	ewarn "If you are upgrading from a previous build of OSSv4 you must run"
@@ -211,6 +160,3 @@ pkg_postinst() {
 	ewarn "You might need to remove /lib/modules/${KV_FULL}/kernel/oss"
 }
 
-pkg_postrm() {
-	linux-mod_pkg_postrm
-}

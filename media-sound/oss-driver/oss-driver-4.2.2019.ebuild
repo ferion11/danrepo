@@ -62,8 +62,15 @@ src_install() {
 }
 
 pkg_postinst() {
+	UPDATE_MODULEDB=true
+	linux-mod_pkg_postinst
+
 	elog "To get sound devices, you need to run"
 	elog "	# ossdetect -d"
 	elog "and"
 	elog "	# ossdevlinks"
+}
+
+pkg_postrm() {
+	linux-mod_pkg_postrm
 }
