@@ -36,8 +36,11 @@ src_prepare() {
 
 	einfo "Replacing init script with gentoo friendly one ..."
 	cp "${FILESDIR}/init.d/oss" "${S}/setup/Linux/oss/etc/S89oss" || die
+
 	cp "${FILESDIR}/sbin/soundon" "${S}/setup/Linux/sbin/soundon" || die
 	cp "${FILESDIR}/sbin/soundoff" "${S}/setup/Linux/sbin/soundoff" || die
+	chmod +x "${S}/setup/Linux/sbin/soundon"
+	chmod +x "${S}/setup/Linux/sbin/soundoff"
 
 	if ! use ogg ; then
 		sed -e "s;OGG_SUPPORT=YES;OGG_SUPPORT=NO;g" \
@@ -114,6 +117,7 @@ src_compile() {
 	ln -s modules.noregparm modules
 
 	rm -rf "${WORKDIR}/build/prototype/usr/lib/oss/build"
+	rm -rf "${WORKDIR}/build/prototype/usr/sbin/ossvermagic"
 }
 
 src_install() {
