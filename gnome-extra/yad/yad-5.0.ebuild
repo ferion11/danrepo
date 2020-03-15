@@ -10,7 +10,7 @@ SRC_URI="https://github.com/v1cont/yad/releases/download/v${PV}/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 RDEPEND="x11-libs/gtk+:3
