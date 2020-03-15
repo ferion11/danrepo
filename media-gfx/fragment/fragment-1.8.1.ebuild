@@ -27,4 +27,6 @@ src_install() {
 	insinto /opt
 	doins -r "${S}/fragment"
 	dosym ../../opt/fragment/fragment /usr/bin/fragment
+	fperms 0755 "/opt/fragment/fragment"
+	fperms 0755 "/opt/fragment/fragAssoc"
 }
