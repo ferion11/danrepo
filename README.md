@@ -28,6 +28,7 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * net-misc/zsync2 - zsync2 is one improved version of zsync.
 * sys-auth/polkit - Polkit with duktape flag to replace spidermonkey.
 * media-gfx/mirage - A fast and simple image viewer based on python and GTK+ (python3.6 version).
+* media-gfx/fragment - Fragment is an exceptionally powerful, versatile and functional image viewer.
 * and can include some more updated version of some portage ebuilds.
 
 ###  Installation
