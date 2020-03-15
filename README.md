@@ -19,7 +19,7 @@ priority=9999
 Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all our ebuilds available.
 
 ###  Include:
-* media-gfx/mtpaint - Simple GTK+2 painting program (git, but release only).
+* media-gfx/mtpaint - Simple GTK+2 painting program.
 * sys-fs/exfat-linux - exFAT filesystem module for Linux kernel (new and updated).
 * sys-fs/exfat-nofuse - Non-fuse kernel driver for exFat and VFat file systems (old, but fixed).
 * x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit.
@@ -27,6 +27,8 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
 * net-misc/zsync2 - zsync2 is one improved version of zsync.
 * sys-auth/polkit - Polkit with duktape flag to replace spidermonkey.
+* media-gfx/mirage - A fast and simple image viewer based on python and GTK+ (python3.6 version).
+* and can include some more updated version of some portage ebuilds.
 
 ###  Installation
 After performing those steps, the following should work (or any other package from this overlay):

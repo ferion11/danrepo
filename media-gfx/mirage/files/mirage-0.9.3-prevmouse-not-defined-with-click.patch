@@ -1,0 +1,16 @@
+--- mirage-0.9.3/mirage.py.debug	2008-03-27 13:05:28.000000000 +0900
++++ mirage-0.9.3/mirage.py	2010-01-29 18:19:24.000000000 +0900
+@@ -2946,10 +2946,11 @@
+ 	def button_pressed(self, widget, event):
+ 		if self.image_loaded:
+ 			# Changes the cursor to the 'resize' cursor, like GIMP, on a middle click:
+-			if (event.button == 2 or event.button == 1) and (self.hscroll.get_property('visible')==True or self.vscroll.get_property('visible')==True):
+-				self.change_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
++			if (event.button == 2 or event.button == 1) :
+ 				self.prevmousex = event.x_root
+ 				self.prevmousey = event.y_root
++				if (self.hscroll.get_property('visible')==True or self.vscroll.get_property('visible')==True) :
++					self.change_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
+ 			# Right-click popup:
+ 			elif self.image_loaded and event.button == 3:
+ 				self.UIManager.get_widget('/Popup').popup(None, None, None, event.button, event.time)

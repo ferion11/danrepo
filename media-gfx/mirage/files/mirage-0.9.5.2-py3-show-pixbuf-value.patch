@@ -1,0 +1,177 @@
+Only in mirage-0.9.5.2.py3: build
+Only in mirage-0.9.5.2.py3: debugfiles.list
+Only in mirage-0.9.5.2.py3: debuglinks.list
+Only in mirage-0.9.5.2.py3: debugsourcefiles.list
+Only in mirage-0.9.5.2.py3: debugsources.list
+Only in mirage-0.9.5.2.py3: elfbins.list
+Only in mirage-0.9.5.2.py3: mirage.lang
+diff -urp mirage-0.9.5.2/mirage.py mirage-0.9.5.2.py3/mirage.py
+--- mirage-0.9.5.2/mirage.py	2019-09-27 12:47:19.232327629 +0900
++++ mirage-0.9.5.2.py3/mirage.py	2019-09-27 14:11:45.158170362 +0900
+@@ -94,6 +94,9 @@ class Base:
+ 		self.currimg_name = ""
+ 		self.currimg_width = 0
+ 		self.currimg_height = 0
++		self.currimg_rowstride = 0
++		self.currimg_n_channels = 0
++		self.currimg_pixels = None
+ 		self.currimg_pixbuf = None
+ 		self.currimg_pixbuf_original = None
+ 		self.currimg_zoomratio = 1
+@@ -607,11 +610,13 @@ class Base:
+ 
+ 		self.statusbar = gtk.Statusbar()
+ 		self.statusbar2 = gtk.Statusbar()
++		self.statusbar3 = gtk.Statusbar()
+ 		#self.statusbar.set_has_resize_grip(False)
+ 		#self.statusbar2.set_has_resize_grip(True)
+ 		self.statusbar2.set_size_request(200, -1)
+ 		hbox_statusbar = gtk.HBox()
+ 		hbox_statusbar.pack_start(child=self.statusbar, expand=True, fill=True, padding=0)
++		hbox_statusbar.pack_start(child=self.statusbar3, expand=True, fill=True, padding=0)
+ 		hbox_statusbar.pack_start(child=self.statusbar2, expand=False, fill=True, padding=0)
+ 		vbox.pack_start(hbox_statusbar, False, False, 0)
+ 		self.window.add(vbox)
+@@ -732,6 +737,8 @@ class Base:
+ 		if not self.statusbar_show:
+ 			self.statusbar.set_property('visible', False)
+ 			self.statusbar.set_no_show_all(True)
++			self.statusbar3.set_property('visible', False)
++			self.statusbar3.set_no_show_all(True)
+ 			self.statusbar2.set_property('visible', False)
+ 			self.statusbar2.set_no_show_all(True)
+ 		if not self.thumbpane_show:
+@@ -747,6 +754,7 @@ class Base:
+ 		if go_into_fullscreen or self.start_in_fullscreen:
+ 			self.enter_fullscreen(None)
+ 			self.statusbar.set_no_show_all(True)
++			self.statusbar3.set_no_show_all(True)
+ 			self.statusbar2.set_no_show_all(True)
+ 			self.toolbar.set_no_show_all(True)
+ 			self.menubar.set_no_show_all(True)
+@@ -1471,6 +1479,9 @@ class Base:
+ 		self.currimg_width = self.imageview.size_request().width
+ 		self.currimg_height = self.imageview.size_request().height
+ 		self.center_image()
++		self.currimg_rowstride = self.currimg_pixbuf.get_rowstride()
++		self.currimg_n_channels = self.currimg_pixbuf.get_n_channels()
++		self.currimg_pixels = self.currimg_pixbuf.get_pixels()
+ 		self.set_go_sensitivities(False)
+ 		self.set_image_sensitivities(False)
+ 		self.update_statusbar()
+@@ -1640,6 +1651,9 @@ class Base:
+ 		gc.collect()
+ 		self.window.get_window().thaw_updates()
+ 		self.loaded_img_in_list = self.curr_img_in_list
++		self.currimg_rowstride = self.currimg_pixbuf.get_rowstride()
++		self.currimg_n_channels = self.currimg_pixbuf.get_n_channels()
++		self.currimg_pixels = self.currimg_pixbuf.get_pixels()
+ 
+ 	def show_scrollbars_if_needed(self):
+ 		if self.currimg_width > self.available_image_width():
+@@ -1912,6 +1926,7 @@ class Base:
+ 			self.UIManager.get_widget('/Popup/Full Screen').hide()
+ 			self.UIManager.get_widget('/Popup/Exit Full Screen').show()
+ 			self.statusbar.hide()
++			self.statusbar3.hide()
+ 			self.statusbar2.hide()
+ 			self.toolbar.hide()
+ 			self.menubar.hide()
+@@ -1942,6 +1957,7 @@ class Base:
+ 			self.menubar.show()
+ 			if self.statusbar_show:
+ 				self.statusbar.show()
++				self.statusbar3.show()
+ 				self.statusbar2.show()
+ 			if self.thumbpane_show:
+ 				self.thumbscroll.show()
+@@ -1957,10 +1973,12 @@ class Base:
+ 	def toggle_status_bar(self, action):
+ 		if self.statusbar.get_property('visible'):
+ 			self.statusbar.hide()
++			self.statusbar3.hide()
+ 			self.statusbar2.hide()
+ 			self.statusbar_show = False
+ 		else:
+ 			self.statusbar.show()
++			self.statusbar3.show()
+ 			self.statusbar2.show()
+ 			self.statusbar_show = True
+ 		if self.image_loaded and self.last_image_action_was_fit:
+@@ -2000,6 +2018,9 @@ class Base:
+ 				self.zoom_to_fit_window(None, False, False)
+ 
+ 	def update_statusbar(self):
++		self.update_statusbar_value(False, 0, 0, 0)
++
++	def update_statusbar_value(self, status, red, green, blue):
+ 		# Update status bar:
+ 		try:
+ 			st = os.stat(self.currimg_name)
+@@ -2009,6 +2030,12 @@ class Base:
+ 		except:
+ 			status_text=_("Cannot load image.")
+ 		self.statusbar.push(self.statusbar.get_context_id(""), status_text)
++
++		status_text = ""
++		if status:
++			status_text = "red[%3d] green[%3d] blue[%3d]" %(red, green, blue)
++		self.statusbar3.push(self.statusbar3.get_context_id(""), status_text)
++
+ 		status_text = ""
+ 		if self.running_custom_actions:
+ 			status_text = _('Custom actions: %(current)i of  %(total)i') % {'current': self.curr_custom_action,'total': self.num_custom_actions}
+@@ -3098,10 +3125,31 @@ class Base:
+ 		pointer = display.get_default_seat().get_pointer()
+ 		return gdkwindow.get_device_position(pointer)
+ 
++	def get_pixel_value(self, pixbuf, x, y):
++		if pixbuf is None:
++			return (False, 0, 0, 0)
++		x_shift = int((self.available_image_width() - self.currimg_width)/2)
++		if x_shift < 0:
++			x_shift = 0
++		y_shift = int((self.available_image_height() - self.currimg_height)/2)
++		if y_shift < 0:
++			y_shift = 0
++		x_pixel = x - x_shift
++		y_pixel = y - y_shift
++		if ((x_pixel < 0) or (x_pixel >= self.currimg_width) or (y_pixel < 0) or (y_pixel >= self.currimg_height )) :
++			return (False, 0, 0, 0)
++		if self.currimg_pixels is None:
++			return (False, 0, 0, 0)
++		pixel = x_pixel * self.currimg_n_channels + y_pixel * self.currimg_rowstride
++q		return (True, self.currimg_pixels[pixel], self.currimg_pixels[pixel + 1], self.currimg_pixels[pixel+2])
++
++
+ 	def mouse_moved(self, widget, event):
+ 		# This handles the panning of the image
+ 		if event.is_hint:
+ 			returned_window, x, y, state = self.gdk_window_get_pointer(event.window)
++			status, red, green, blue = self.get_pixel_value(self.currimg_pixbuf, x, y)
++			self.update_statusbar_value(status, red, green, blue)			
+ 		else:
+ 			state = event.state
+ 		x, y = event.x_root, event.y_root
+@@ -3328,6 +3376,9 @@ class Base:
+ 				self.show_scrollbars_if_needed()
+ 				self.center_image()
+ 				self.update_statusbar()
++			self.currimg_rowstride = self.currimg_pixbuf.get_rowstride()
++			self.currimg_n_channels = self.currimg_pixbuf.get_n_channels()
++			self.currimg_pixels = self.currimg_pixbuf.get_pixels()
+ 			self.image_modified = True
+ 		
+ 
+@@ -4085,6 +4136,10 @@ class Base:
+ 					self.set_image_sensitivities(True)
+ 				else:
+ 					self.set_image_sensitivities(False)
++		if used_prev or used_next:
++			self.currimg_rowstride = self.currimg_pixbuf.get_rowstride()
++			self.currimg_n_channels = self.currimg_pixbuf.get_n_channels()
++			self.currimg_pixels = self.currimg_pixbuf.get_pixels()
+ 		return used_prev, used_next
+ 
+ 	def load_new_image2(self, check_prev_last, use_current_pixbuf_original, reset_cursor, perform_onload_action, skip_recentfiles=False):
+Only in mirage-0.9.5.2.py3: mo
