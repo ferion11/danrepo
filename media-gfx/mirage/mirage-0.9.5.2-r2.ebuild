@@ -32,7 +32,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-0.9.5.2-glib241-init-workaround.patch
 	"${FILESDIR}"/${PN}-0.9.3-stop_cleaning_up.patch
 	"${WORKDIR}"/${PN}-0.9.5.2-py3-gtk3.patch
-	"${FILESDIR}"/${PN}-0.9.5.2-py3-show-pixbuf-value.patch
+	#"${FILESDIR}"/${PN}-0.9.5.2-py3-show-pixbuf-value.patch
 )
 
 src_install() {
