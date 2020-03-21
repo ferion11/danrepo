@@ -5,7 +5,7 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_6 )
 
-inherit distutils-r1
+inherit distutils-r1 xdg-utils
 
 DESCRIPTION="A fast and simple image viewer based on python and GTK+"
 HOMEPAGE="http://mirageiv.berlios.de/"
@@ -42,4 +42,12 @@ src_install() {
 	for x in ${XDOCS}; do
 		rm -f "${D}"/usr/share/mirage/${x}
 	done
+}
+
+pkg_postinst() {
+	xdg_desktop_database_update
+}
+
+pkg_postrm() {
+	xdg_desktop_database_update
 }
