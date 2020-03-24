@@ -112,10 +112,12 @@ src_install() {
 pkg_postinst() {
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
+	xdg_icon_cache_update
 	elog "To import your browser data use Settings -> People -> Import Bookmarks and Settings."
 }
 
 pkg_postrm() {
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
+	xdg_icon_cache_update
 }
