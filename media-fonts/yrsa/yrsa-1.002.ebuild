@@ -11,7 +11,7 @@ SRC_URI="https://github.com/rosettatype/yrsa-rasa/releases/download/v${PV}/Yrsa-
 
 LICENSE="OFL-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="+otf +ttf"
 
 DEPEND="app-arch/unzip"
