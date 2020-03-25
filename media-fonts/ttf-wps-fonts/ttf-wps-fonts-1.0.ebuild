@@ -7,7 +7,7 @@ inherit font
 
 DESCRIPTION="Symbol fonts required by wps-office."
 HOMEPAGE="https://github.com/ferion11/ttf-wps-fonts"
-SRC_URI="https://github.com/ferion11/ttf-wps-fonts/archive/v${PV}.tar.gz"
+SRC_URI="https://github.com/ferion11/ttf-wps-fonts/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MSttfEULA"
 SLOT="0"

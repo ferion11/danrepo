@@ -7,7 +7,7 @@ inherit cmake-utils
 
 DESCRIPTION="Gromit-MPX is a multi-pointer GTK3 port of the original Gromit"
 HOMEPAGE="https://github.com/bk138/gromit-mpx"
-SRC_URI="https://github.com/bk138/gromit-mpx/archive/${PV}.tar.gz"
+SRC_URI="https://github.com/bk138/gromit-mpx/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
