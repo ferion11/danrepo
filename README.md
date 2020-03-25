@@ -38,3 +38,7 @@ After performing those steps, the following should work (or any other package fr
 ```
 sudo emerge -av sys-fs/exfat-linux
 ```
+
+###  Issues
+Any issue, like bugs, need more flag, need new ebuild, update some old ebuild, any information you want, or anything else, you can use:
+[danrepo Issues](https://github.com/ferion11/danrepo/issues)
