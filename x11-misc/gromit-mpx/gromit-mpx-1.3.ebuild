@@ -20,3 +20,11 @@ RDEPEND="
 	>=x11-apps/xinput-1.3
 "
 DEPEND="${RDEPEND}"
+
+pkg_postinst() {
+	xdg_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_icon_cache_update
+}
