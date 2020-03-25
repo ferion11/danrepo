@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Mozilla's Zilla Slab Type Family. The ever-so-friendly Museo Slab Alternative. While Museo Slab might be more warm and friendly overall, the italics in Zilla Slab really add some extra funk. Looking at it, we can see the ‘f’, ‘x’, and ‘y’ adding in that extra dose of personality.
+	</longdescription>
+	<use>
+		<flag name="otf">Install the OpenType version of the font</flag>
+		<flag name="ttf">Install the TrueType version of the font</flag>
+	</use>
+</pkgmetadata>
