@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Yrsa is one Latin-only type family intended for continuous reading on the web (longer articles in online news, magazines, blogs). A special consideration was given to Central and East European languages and proper shaping of their accents.
+	</longdescription>
+	<use>
+		<flag name="otf">Install the OpenType version of the font</flag>
+		<flag name="ttf">Install the TrueType version of the font</flag>
+	</use>
+</pkgmetadata>
