@@ -33,6 +33,7 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * media-fonts/catamaran - Catamaran is a 9 weight Tamil type-family. [See here](https://fonts.google.com/specimen/Catamaran)
 * media-fonts/montserrat - Typeface inspired in the city of Montserrat in Buenos Aires. [See here](https://fonts.google.com/specimen/Montserrat)
 * media-fonts/yrsa - Yrsa is Latin-only type family by Rosetta, intended for continuous reading. [See here](https://fonts.google.com/specimen/Yrsa)
+* media-fonts/lato - Lato is a sanserif type­face family. [See here](https://fonts.google.com/specimen/Lato)
 * media-fonts/zilla-slab - Mozilla's Zilla Slab Type Family. [See here](https://fonts.google.com/specimen/Zilla+Slab)
 * and can include some more updated version of some portage ebuilds.
 
