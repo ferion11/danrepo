@@ -5,7 +5,7 @@ EAPI=7
 
 inherit font
 
-DESCRIPTION="Lato is a sanserif type­face family."
+DESCRIPTION="Lato is a sanserif typeface family."
 HOMEPAGE="http://www.latofonts.com"
 SRC_URI="http://www.latofonts.com/download/Lato2OFL.zip -> ${P}.zip"
 
