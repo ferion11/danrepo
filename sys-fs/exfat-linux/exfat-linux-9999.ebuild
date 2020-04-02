@@ -6,9 +6,9 @@ EAPI=7
 inherit linux-mod git-r3
 
 DESCRIPTION="exFAT filesystem module for Linux kernel"
-HOMEPAGE="https://github.com/arter97/exfat-linux"
+HOMEPAGE="https://github.com/ferion11/exfat-linux"
 
-EGIT_REPO_URI="https://github.com/arter97/exfat-linux"
+EGIT_REPO_URI="https://github.com/ferion11/exfat-linux"
 EGIT_CLONE_TYPE="shallow"
 
 LICENSE="GPL-2+"
