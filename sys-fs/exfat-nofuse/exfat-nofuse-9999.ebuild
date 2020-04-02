@@ -6,9 +6,9 @@ EAPI=7
 inherit linux-mod git-r3
 
 DESCRIPTION="Non-fuse kernel driver for exFat and VFat file systems"
-HOMEPAGE="https://github.com/barrybingo/exfat-nofuse"
+HOMEPAGE="https://github.com/ferion11/exfat-nofuse"
 
-EGIT_REPO_URI="https://github.com/barrybingo/exfat-nofuse"
+EGIT_REPO_URI="https://github.com/ferion11/exfat-nofuse"
 EGIT_CLONE_TYPE="shallow"
 
 LICENSE="GPL-2+"
