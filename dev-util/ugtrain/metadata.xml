@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		ugtrain - Universal Game Trainer. The ugtrain (say You-Gee-train) is an advanced free and universal game trainer for the command line under GPLv3 license. It is a research project and a tool for advanced users who want latest and really working Linux game cheating methods at the cost of no GUI and limited usability.
+	</longdescription>
+	<use>
+		<flag name="glib2">Compile hooking libs with glib2 function hooking (EXPERIMENTAL)</flag>
+		<flag name="multilib">Compile hooking libs as 32 and 64 bit (EXPERIMENTAL)</flag>
+		<flag name="procmem">Default support to proc/$pid/mem</flag>
+	</use>
+</pkgmetadata>
