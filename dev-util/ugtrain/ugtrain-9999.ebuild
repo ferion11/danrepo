@@ -7,6 +7,7 @@ inherit autotools git-r3 multilib
 DESCRIPTION="The Universal Elite Game Trainer for CLI (best Linux game trainer)"
 HOMEPAGE="https://github.com/ugtrain/ugtrain"
 EGIT_REPO_URI="https://github.com/ugtrain/ugtrain"
+EGIT_CLONE_TYPE="shallow"
 
 LICENSE="GPL-3"
 SLOT="0"
