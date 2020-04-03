@@ -10,16 +10,17 @@ SRC_URI="https://duktape.org/${P}.tar.xz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+cmdline"
+IUSE="+cmdline -debug -libm"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	cp Makefile.sharedlibrary Makefile || die "failed to copy makefile"
 
 	# Set install path
 	sed -i "s#INSTALL_PREFIX = /usr/local#INSTALL_PREFIX = ${D::-1}/usr#" \
-			Makefile.sharedlibrary || die "failed to set install path"
+			Makefile || die "failed to set install path"
 
 	# Edit pkgconfig
 	sed "s#VERSION#${PV}#" "${FILESDIR}/${PN}.pc" > "${S}/${PN}.pc" || die
@@ -27,13 +28,23 @@ src_prepare() {
 
 	# Set lib folder
 	sed -i "s#(INSTALL_PREFIX)/lib#(INSTALL_PREFIX)/$(get_libdir)#" \
-		Makefile.sharedlibrary || die
+		Makefile || die
+
+	# Remove debug flag
+	sed -i 's/ -g / /g' Makefile || die
 
 	# Set Gentoo CFLAGS
-	sed -i "s/-Os/${CFLAGS}/g" \
-		Makefile.sharedlibrary || die
+	sed -i "s/-Os/${CFLAGS}/g" Makefile || die
 
-	mv Makefile.sharedlibrary Makefile || die "failed to rename makefile"
+	if use debug; then
+		# Add debug -g flag
+		sed -i 's/-Wextra/-Wextra -g/g' Makefile || die
+	fi
+
+	if use libm; then
+		# Add libm.so ref.
+		sed -i 's/duktape.c/duktape.c -lm/g' Makefile || die
+	fi
 
 	eapply_user
 }

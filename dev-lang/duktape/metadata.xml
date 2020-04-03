@@ -9,5 +9,6 @@
 	</upstream>
 	<use>
 		<flag name="cmdline">Compile and install command line duk</flag>
+		<flag name="libm">Add "libm.so" reference to the "libduktape.so", maybe needed for debug</flag>
 	</use>
 </pkgmetadata>
