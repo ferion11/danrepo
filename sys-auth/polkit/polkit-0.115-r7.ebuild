@@ -14,7 +14,7 @@ SRC_URI="
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~hppa ~mips ~s390 ~sh ~sparc x86"
+KEYWORDS="amd64 ~hppa ~mips ~s390 ~sparc x86"
 IUSE="consolekit duktape elogind examples gtk +introspection jit kde nls pam selinux systemd test"
 RESTRICT="!test? ( test )"
 
