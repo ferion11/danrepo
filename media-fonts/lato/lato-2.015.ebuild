@@ -7,11 +7,12 @@ inherit font
 
 DESCRIPTION="Lato is a sanserif typeface family."
 HOMEPAGE="http://www.latofonts.com"
-SRC_URI="http://www.latofonts.com/download/Lato2OFL.zip -> ${P}.zip"
+#SRC_URI="http://www.latofonts.com/download/Lato2OFL.zip -> ${P}.zip"
+SRC_URI="https://github.com/ferion11/danrepo/releases/download/lato_font/${P}.zip"
 
 LICENSE="OFL-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 DEPEND="app-arch/unzip"
