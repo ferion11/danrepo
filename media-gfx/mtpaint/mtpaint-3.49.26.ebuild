@@ -3,15 +3,13 @@
 
 EAPI=7
 
-inherit git-r3 xdg-utils
+inherit xdg-utils
 
 DESCRIPTION="Simple GTK+2 painting program"
 HOMEPAGE="https://github.com/wjaguar/mtPaint"
 
-EGIT_REPO_URI="https://github.com/wjaguar/mtPaint.git"
-EGIT_BRANCH="master"
-EGIT_COMMIT="3d675d0a8fd598d6dff8cac51940fb62e14f7b59"
-EGIT_CLONE_TYPE="shallow"
+EGIT_COMMIT="60be9cc851dfd263381dde326cc8f955e0454c46"
+SRC_URI="https://github.com/wjaguar/mtPaint/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -35,6 +33,8 @@ DOCS=("README" "NEWS")
 usev_no() {
 	usex "$1" "${2:-$1}" "no${2:-$1}"
 }
+
+S="${WORKDIR}/mtPaint-${EGIT_COMMIT}"
 
 src_configure() {
 	# use debug to allow custom cflags
