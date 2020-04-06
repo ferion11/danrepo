@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 DESCRIPTION="Embeddable Javascript engine"
 HOMEPAGE="https://duktape.org"
@@ -47,6 +47,9 @@ src_prepare() {
 		# Add libm.so ref.
 		sed -i 's/duktape.c/duktape.c -lm/g' Makefile || die
 	fi
+
+	# bugfix wrong eapi7 INSTALL_PREFIX at 2020/04/05
+	sed -i "s/\/imag\//\/image\//g" Makefile || die
 
 	eapply_user
 }
