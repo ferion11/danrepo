@@ -15,7 +15,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="libsalsa midi ogg oss_driver pax_kernel vmix_fixedpoint"
+IUSE="+libsalsa +midi +ogg +oss_driver pax_kernel vmix_fixedpoint"
 
 RESTRICT="mirror"
 
