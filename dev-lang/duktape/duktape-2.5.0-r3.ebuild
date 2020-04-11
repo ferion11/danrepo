@@ -70,6 +70,8 @@ src_install() {
 	insinto /usr/$(get_libdir)/pkgconfig/
 	doins "${S}/${PN}.pc"
 
-	exeinto /usr/bin
-	doexe duk
+	if use cmdline; then
+		exeinto /usr/bin
+		doexe duk
+	fi
 }
