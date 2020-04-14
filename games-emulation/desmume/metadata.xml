@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="gtk">Use graphical interface based on <pkg>x11-libs/gtk+</pkg>; builds a separate binary</flag>
+		<flag name="glade">Use graphical interface based on glade; builds a sepearate binary</flag>
+		<flag name="osmesa">Add support for Mesa off-screen rendering library</flag>
+	</use>
+</pkgmetadata>
