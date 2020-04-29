@@ -28,6 +28,9 @@ src_prepare() {
 		-e "/^MULTIARCH_PATH/d" \
 		-i usr/src/oss4-${MY_PV}-build${BUILD}/{core,drivers}/Makefile || die
 
+	# Adding patch to work with kernel 5.6.x
+	eapply "${FILESDIR}/${P}-kernel_5_6.patch"
+
 	eapply_user
 }
 
