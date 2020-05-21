@@ -13,7 +13,7 @@ EGIT_CLONE_TYPE="shallow"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="openal gtk glade osmesa wifi"
+IUSE="-debug glade +glx +gtk hud openal osmesa wifi"
 
 DEPEND="virtual/opengl
 	sys-libs/zlib
@@ -51,8 +51,11 @@ src_prepare() {
 src_configure() {
 	econf --datadir=/usr/share \
 		$(use_enable openal) \
+		$(use_enable glx) \
 		$(use_enable osmesa) \
+		$(use_enable hud) \
 		$(use_enable wifi) \
+		$(use_enable debug) \
 		|| die "econf failed"
 }
 
