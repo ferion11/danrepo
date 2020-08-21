@@ -68,3 +68,11 @@ src_install() {
 		[ -f "${D}/bin/desmume-glade" ] && rm "${D}/bin/desmume-glade"
 	fi
 }
+
+pkg_postinst() {
+	xdg_desktop_database_update
+}
+
+pkg_postrm() {
+	xdg_desktop_database_update
+}
