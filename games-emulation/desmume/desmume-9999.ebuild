@@ -3,7 +3,7 @@
 
 EAPI="7"
 
-inherit git-r3 eutils autotools flag-o-matic
+inherit git-r3 eutils autotools flag-o-matic xdg-utils
 
 DESCRIPTION="Nintendo DS emulator"
 HOMEPAGE="http://desmume.org/"
