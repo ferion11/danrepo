@@ -23,7 +23,6 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit.
 * gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
 * net-misc/zsync2 - zsync2 is one improved version of zsync.
-* dev-util/ugtrain - The Universal Elite Game Trainer for CLI (best Linux game trainer).
 * sys-auth/polkit - Polkit with duktape flag to replace spidermonkey.
 * media-gfx/mirage - A fast and simple image viewer based on python and GTK+ (python3.6 version).
 * media-gfx/fragment - Fragment is an exceptionally powerful, versatile and functional image viewer.
