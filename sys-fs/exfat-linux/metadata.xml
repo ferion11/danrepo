@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-	<longdescription lang="en">
-		This exFAT filesystem module for Linux kernel is based on sdFAT drivers by Samsung, which is used with their smartphone lineups. Based on a totally different and newer base provided by Samsung. Intended to keep upstream changes constantly merged. Intended to fix breakage from newer kernels as-soon-as-possible.
-	</longdescription>
-</pkgmetadata>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-	<longdescription lang="en">
-		Linux non-fuse read/write kernel driver for the exFAT, FAT12, FAT16 and vfat (FAT32) file systems. Originally ported from Android kernel v3.0. Android ARM Linux non-fuse read/write kernel driver for exFat and VFat Android file systems. Not updated, but work just fine (fixed for kernel 5.x)
-	</longdescription>
-</pkgmetadata>

@@ -20,8 +20,6 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 
 ###  Include:
 * media-gfx/mtpaint - Simple GTK+2 painting program.
-* sys-fs/exfat-linux - exFAT filesystem module for Linux kernel (new and updated; this is also no-fuse).
-* sys-fs/exfat-nofuse - Non-fuse kernel driver for exFat and VFat file systems (old, but fixed).
 * x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit.
 * gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
 * net-misc/zsync2 - zsync2 is one improved version of zsync.
