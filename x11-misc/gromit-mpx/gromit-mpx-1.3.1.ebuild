@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="Gromit-MPX is a multi-pointer GTK3 port of the original Gromit"
 HOMEPAGE="https://github.com/bk138/gromit-mpx"
