@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils git-r3
+inherit cmake git-r3
 
 DESCRIPTION="zsync2 is one improved version of zsync"
 HOMEPAGE="https://github.com/AppImage/zsync2"
