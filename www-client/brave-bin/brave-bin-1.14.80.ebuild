@@ -11,11 +11,11 @@ CHROMIUM_LANGS="
 	sw ta te th tr uk vi zh-CN zh-TW
 "
 
-inherit chromium-2 desktop xdg-utils
+inherit chromium-2 desktop xdg-utils unpacker
 
 DESCRIPTION="Brave Web Browser"
 HOMEPAGE="https://brave.com"
-SRC_URI="https://github.com/brave/brave-browser/releases/download/v${PV}/brave-v${PV}-linux-x64.zip -> ${P}.zip"
+SRC_URI="https://github.com/brave/brave-browser/releases/download/v${PV}/brave-browser_${PV}_amd64.deb"
 
 LICENSE="MPL-2.0"
 SLOT="0"
@@ -78,7 +78,11 @@ RDEPEND="
 
 QA_PREBUILT="*"
 
-S=${WORKDIR}
+S="${WORKDIR}/opt/brave.com/brave"
+
+src_unpack() {
+	unpack_deb ${A}
+}
 
 src_prepare() {
 	pushd "${S}/locales" > /dev/null || die
