@@ -9,19 +9,20 @@ DESCRIPTION="Policy framework for controlling privileges for system-wide service
 HOMEPAGE="https://www.freedesktop.org/wiki/Software/polkit https://gitlab.freedesktop.org/polkit/polkit"
 SRC_URI="
 	https://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz
-	https://github.com/ferion11/danrepo/releases/download/polkit_patchs/polkit-0.116-duktape.patch.gz
+	https://github.com/ferion11/danrepo/releases/download/polkit_patchs/polkit-${PV}-duktape.patch.gz
 "
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
-IUSE="consolekit duktape elogind examples gtk +introspection kde nls pam selinux systemd test"
+KEYWORDS="~amd64 ~x86"
+IUSE="consolekit duktape elogind examples gtk +introspection jit kde nls pam selinux systemd test"
 RESTRICT="!test? ( test )"
 
 REQUIRED_USE="^^ ( consolekit elogind systemd )"
 
 BDEPEND="
 	acct-user/polkitd
+	acct-group/polkitd
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/docbook-xsl-stylesheets
 	dev-libs/gobject-introspection-common
@@ -34,7 +35,7 @@ BDEPEND="
 	introspection? ( dev-libs/gobject-introspection )
 "
 DEPEND="
-	!duktape? ( dev-lang/spidermonkey:60[-debug] )
+	!duktape? ( dev-lang/spidermonkey:68[-debug] )
 	duktape? ( dev-lang/duktape )
 	dev-libs/glib:2
 	dev-libs/expat
@@ -73,7 +74,7 @@ src_prepare() {
 	if use duktape ; then
 		PATCHES+=(
 			#from https://gitlab.freedesktop.org/polkit/polkit/merge_requests/35
-			"${WORKDIR}"/polkit-0.116-duktape.patch
+			"${WORKDIR}"/polkit-${PV}-duktape.patch
 		)
 	fi
 	default
@@ -131,8 +132,8 @@ src_install() {
 	default
 
 	if use examples; then
-		insinto /usr/share/doc/${PF}/examples
-		doins src/examples/{*.c,*.policy*}
+		docinto examples
+		dodoc src/examples/{*.c,*.policy*}
 	fi
 
 	diropts -m 0700 -o polkitd
