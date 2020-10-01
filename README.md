@@ -24,7 +24,7 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
 * net-misc/zsync2 - zsync2 is one improved version of zsync.
 * sys-auth/polkit - Polkit with duktape flag to replace spidermonkey.
-* media-gfx/mirage - A fast and simple image viewer based on python and GTK+ (python3.6 version).
+* media-gfx/mirage - A fast and simple image viewer based on python and GTK+ (python3 version).
 * media-gfx/fragment - Fragment is an exceptionally powerful, versatile and functional image viewer.
 * www-client/brave-bin - Brave Web Browser binary.
 * media-fonts/ttf-wps-fonts - These are the symbol fonts required by app-office/wps-office.
