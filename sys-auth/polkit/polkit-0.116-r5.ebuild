@@ -14,11 +14,11 @@ SRC_URI="
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="consolekit duktape elogind examples gtk +introspection jit kde nls pam selinux systemd test"
+KEYWORDS="amd64 x86"
+IUSE="duktape elogind examples gtk +introspection jit kde nls pam selinux systemd test"
 RESTRICT="!test? ( test )"
 
-REQUIRED_USE="^^ ( consolekit elogind systemd )"
+REQUIRED_USE="^^ ( elogind systemd )"
 
 BDEPEND="
 	acct-user/polkitd
@@ -35,7 +35,7 @@ BDEPEND="
 	introspection? ( dev-libs/gobject-introspection )
 "
 DEPEND="
-	!duktape? ( dev-lang/spidermonkey:78[-debug] )
+	!duktape? ( dev-lang/spidermonkey:60[-debug] )
 	duktape? ( dev-lang/duktape )
 	dev-libs/glib:2
 	dev-libs/expat
@@ -51,7 +51,6 @@ RDEPEND="${DEPEND}
 	selinux? ( sec-policy/selinux-policykit )
 "
 PDEPEND="
-	consolekit? ( sys-auth/consolekit[policykit] )
 	gtk? ( || (
 		>=gnome-extra/polkit-gnome-0.105
 		>=lxde-base/lxsession-0.5.2

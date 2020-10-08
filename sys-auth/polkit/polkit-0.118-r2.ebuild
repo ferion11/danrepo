@@ -14,11 +14,11 @@ SRC_URI="
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
-IUSE="consolekit duktape elogind examples gtk +introspection jit kde nls pam selinux systemd test"
+KEYWORDS="~amd64 ~x86"
+IUSE="duktape elogind examples gtk +introspection jit kde nls pam selinux systemd test"
 RESTRICT="!test? ( test )"
 
-REQUIRED_USE="^^ ( consolekit elogind systemd )"
+REQUIRED_USE="^^ ( elogind systemd )"
 
 BDEPEND="
 	acct-user/polkitd
@@ -35,7 +35,7 @@ BDEPEND="
 	introspection? ( dev-libs/gobject-introspection )
 "
 DEPEND="
-	!duktape? ( dev-lang/spidermonkey:60[-debug] )
+	!duktape? ( dev-lang/spidermonkey:78[-debug] )
 	duktape? ( dev-lang/duktape )
 	dev-libs/glib:2
 	dev-libs/expat
@@ -48,11 +48,9 @@ DEPEND="
 "
 RDEPEND="${DEPEND}
 	acct-user/polkitd
-	acct-group/polkitd
 	selinux? ( sec-policy/selinux-policykit )
 "
 PDEPEND="
-	consolekit? ( sys-auth/consolekit[policykit] )
 	gtk? ( || (
 		>=gnome-extra/polkit-gnome-0.105
 		>=lxde-base/lxsession-0.5.2
@@ -65,7 +63,6 @@ DOCS=( docs/TODO HACKING NEWS README )
 PATCHES=(
 	# bug 660880
 	"${FILESDIR}"/polkit-0.115-elogind.patch
-	"${FILESDIR}"/CVE-2018-19788.patch
 )
 
 QA_MULTILIB_PATHS="
@@ -77,10 +74,6 @@ src_prepare() {
 		PATCHES+=(
 			#from https://gitlab.freedesktop.org/polkit/polkit/merge_requests/35
 			"${WORKDIR}"/polkit-${PV}-duktape.patch
-		)
-	else
-		PATCHES+=(
-			"${FILESDIR}"/polkit-0.115-spidermonkey-60.patch
 		)
 	fi
 	default
@@ -137,20 +130,18 @@ src_compile() {
 src_install() {
 	default
 
-	fowners -R polkitd:root /{etc,usr/share}/polkit-1/rules.d
-
-	diropts -m0700 -o polkitd -g polkitd
-	keepdir /var/lib/polkit-1
-
 	if use examples; then
 		docinto examples
 		dodoc src/examples/{*.c,*.policy*}
 	fi
 
+	diropts -m 0700 -o polkitd
+	keepdir /usr/share/polkit-1/rules.d
+
 	find "${ED}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {
-	chown -R polkitd:root "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
-	chown -R polkitd:polkitd "${EROOT}"/var/lib/polkit-1
+	chmod 0700 "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
+	chown polkitd "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
 }
