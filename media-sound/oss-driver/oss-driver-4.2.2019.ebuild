@@ -10,6 +10,7 @@ BUILD=$(ver_cut 3)
 DESCRIPTION="Open Sound System - drivers"
 HOMEPAGE="http://developer.opensound.com/"
 SRC_URI="https://www.deb-multimedia.org/pool/main/o/oss4-dmo/oss4-dkms_${MY_PV}-build${BUILD}-dmo3_amd64.deb"
+RESTRICT="primaryuri"
 
 LICENSE="GPL-2"
 SLOT="0"

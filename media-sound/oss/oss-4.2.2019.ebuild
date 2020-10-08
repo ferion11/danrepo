@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 
 IUSE="+libsalsa +midi +ogg +oss_driver pax_kernel vmix_fixedpoint"
 
-RESTRICT="mirror"
+RESTRICT="primaryuri"
 
 DEPEND="!media-sound/oss-devel
 	libsalsa? ( media-libs/alsa-lib )

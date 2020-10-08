@@ -7,6 +7,7 @@ inherit eutils xdg-utils gnome2-utils
 DESCRIPTION="A tool for creating graphical dialogs from shell scripts. Fork of zenity."
 HOMEPAGE="https://github.com/v1cont/yad"
 SRC_URI="https://github.com/v1cont/yad/releases/download/v${PV}/${P}.tar.xz"
+RESTRICT="primaryuri"
 
 LICENSE="GPL-3"
 SLOT="0"

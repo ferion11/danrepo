@@ -8,6 +8,7 @@ inherit font
 DESCRIPTION="Typeface inspired in the city of Montserrat in Buenos Aires"
 HOMEPAGE="https://github.com/JulietaUla/Montserrat"
 SRC_URI="https://github.com/JulietaUla/Montserrat/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+RESTRICT="primaryuri"
 
 LICENSE="OFL-1.1"
 SLOT="0"

@@ -13,6 +13,7 @@ SRC_URI="
 	mirror://sourceforge/mirageiv/${P}.tar.bz2
 	https://github.com/ferion11/danrepo/releases/download/mirage_patchs/mirage-0.9.5.2-py3-gtk3.patch.gz
 "
+RESTRICT="primaryuri"
 
 LICENSE="GPL-3"
 SLOT="0"

@@ -16,6 +16,7 @@ inherit chromium-2 desktop xdg-utils unpacker
 DESCRIPTION="Brave Web Browser"
 HOMEPAGE="https://brave.com"
 SRC_URI="https://github.com/brave/brave-browser/releases/download/v${PV}/brave-browser_${PV}_amd64.deb"
+RESTRICT="primaryuri"
 
 LICENSE="MPL-2.0"
 SLOT="0"

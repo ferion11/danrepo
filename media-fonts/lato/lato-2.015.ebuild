@@ -9,6 +9,7 @@ DESCRIPTION="Lato is a sanserif typeface family."
 HOMEPAGE="http://www.latofonts.com"
 #SRC_URI="http://www.latofonts.com/download/Lato2OFL.zip -> ${P}.zip"
 SRC_URI="https://github.com/ferion11/danrepo/releases/download/lato_font/${P}.zip"
+RESTRICT="primaryuri"
 
 LICENSE="OFL-1.1"
 SLOT="0"

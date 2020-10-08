@@ -8,6 +8,7 @@ inherit font
 DESCRIPTION="Mozilla's Zilla Slab Type Family"
 HOMEPAGE="https://github.com/mozilla/zilla-slab"
 SRC_URI="https://github.com/mozilla/zilla-slab/releases/download/v${PV}/Zilla-Slab-Fonts-v${PV}.zip -> ${P}.zip"
+RESTRICT="primaryuri"
 
 LICENSE="OFL-1.1"
 SLOT="0"

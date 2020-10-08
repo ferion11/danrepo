@@ -8,6 +8,7 @@ inherit font
 DESCRIPTION="Yrsa is Latin-only type family by Rosetta, intended for continuous reading"
 HOMEPAGE="https://github.com/rosettatype/yrsa-rasa"
 SRC_URI="https://github.com/rosettatype/yrsa-rasa/releases/download/v${PV}/Yrsa-fonts-v${PV}.zip -> ${P}.zip"
+RESTRICT="primaryuri"
 
 LICENSE="OFL-1.1"
 SLOT="0"

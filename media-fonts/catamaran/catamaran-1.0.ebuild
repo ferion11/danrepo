@@ -10,6 +10,7 @@ HOMEPAGE="https://github.com/VanillaandCream/Catamaran-Tamil"
 
 EGIT_COMMIT="7559b4906f9c9148fb22c6f89508c3053a78a296"
 SRC_URI="https://github.com/VanillaandCream/Catamaran-Tamil/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
+RESTRICT="primaryuri"
 
 LICENSE="OFL-1.1"
 SLOT="0"
