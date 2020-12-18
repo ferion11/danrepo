@@ -9,7 +9,7 @@ inherit desktop xdg-utils unpacker
 
 DESCRIPTION="Fast log explorer for big files"
 HOMEPAGE="https://klogg.filimonov.dev"
-SRC_URI="https://github.com/variar/klogg/releases/download/v${PV}/klogg-${PV}.0-r589-Linux.deb"
+SRC_URI="https://github.com/variar/klogg/releases/download/v${PV}/klogg-${PV}.0.808-Linux.deb"
 RESTRICT="primaryuri"
 
 LICENSE="GPL-3"
