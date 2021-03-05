@@ -15,7 +15,7 @@ RESTRICT="primaryuri"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE="gif jpeg nls tiff"
+IUSE="debug gif jpeg nls threads tiff"
 
 DEPEND="dev-libs/glib
 	>=media-libs/libpng-1.2.7:0
@@ -37,11 +37,38 @@ src_configure() {
 	# Set Gentoo CFLAGS
 	sed -i "s/-O2 \$MARCH/${CFLAGS}/g" configure || die
 
-	econf \
-			man \
-			intl \
-			thread \
-			release
+	local myconf
+	myconf="man"
+
+	if use debug ; then
+		myconf="${myconf} debug"
+	else
+		myconf="${myconf} release"
+	fi
+
+	if use nls ; then
+		myconf="${myconf} intl"
+	fi
+
+	if use threads ; then
+		myconf="${myconf} thread"
+	else
+		myconf="${myconf} nothread"
+	fi
+
+	if use jpeg ; then
+		myconf="${myconf} jpeg"
+	else
+		myconf="${myconf} nojpeg"
+	fi
+
+	if use tiff ; then
+		myconf="${myconf} tiff"
+	else
+		myconf="${myconf} notiff"
+	fi
+
+	econf ${myconf}
 }
 
 pkg_postinst() {
