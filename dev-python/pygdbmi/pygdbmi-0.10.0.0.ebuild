@@ -6,8 +6,8 @@ PYTHON_COMPAT=( python3_{7,8,9} pypy3 )
 
 inherit distutils-r1
 
-DESCRIPTION="Retrieve information on running processes and system utilization"
-HOMEPAGE="https://github.com/giampaolo/psutil https://pypi.org/project/psutil/"
+DESCRIPTION="Get Structured Output from GDB's Machine Interface"
+HOMEPAGE=" https://github.com/cs01/pygdbmi https://pypi.org/project/pygdbmi/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="MIT"
