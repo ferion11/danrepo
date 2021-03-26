@@ -17,7 +17,7 @@ KEYWORDS="~amd64"
 RDEPEND="
 	app-admin/sudo
 	dev-lang/python
-	dev-libs/distorm64
+	dev-libs/distorm3
 	dev-python/pexpect
 	dev-python/psutil
 	dev-python/pygdbmi
