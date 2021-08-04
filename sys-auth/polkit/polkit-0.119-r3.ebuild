@@ -25,6 +25,7 @@ BDEPEND="
 	acct-group/polkitd
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/docbook-xsl-stylesheets
+	dev-libs/glib
 	dev-libs/gobject-introspection-common
 	dev-libs/libxslt
 	dev-util/glib-utils
@@ -44,6 +45,7 @@ DEPEND="
 		sys-auth/pambase
 		sys-libs/pam
 	)
+	!pam? ( virtual/libcrypt:= )
 	systemd? ( sys-apps/systemd:0=[policykit] )
 "
 RDEPEND="${DEPEND}
