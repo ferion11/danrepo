@@ -104,7 +104,9 @@ src_install() {
 	exeinto ${BRAVE_HOME}
 		doexe brave
 		doexe brave-browser
-		doexe crashpad_handler
+		doexe chrome-sandbox
+		#doexe crashpad_handler
+		doexe chrome_crashpad_handler
 
 	dosym ${BRAVE_HOME}/brave /usr/bin/${PN} || die
 
