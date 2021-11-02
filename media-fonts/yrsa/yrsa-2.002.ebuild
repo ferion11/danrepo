@@ -17,7 +17,8 @@ IUSE="+otf +ttf"
 
 DEPEND="app-arch/unzip"
 
-S="${WORKDIR}/Yrsa"
+#S="${WORKDIR}/Yrsa"
+S="${WORKDIR}"
 
 src_install() {
 	if use otf; then
