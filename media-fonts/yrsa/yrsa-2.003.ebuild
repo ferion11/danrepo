@@ -18,7 +18,8 @@ IUSE="+otf +ttf"
 DEPEND="app-arch/unzip"
 
 #S="${WORKDIR}/Yrsa"
-S="${WORKDIR}"
+#S="${WORKDIR}"
+S="${WORKDIR}/Yrsa-fonts-v${PV}"
 
 src_install() {
 	if use otf; then
