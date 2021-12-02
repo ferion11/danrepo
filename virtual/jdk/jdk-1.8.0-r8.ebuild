@@ -7,11 +7,12 @@ DESCRIPTION="Virtual for Java Development Kit (JDK)"
 SLOT="1.8"
 #KEYWORDS="amd64 x86"
 KEYWORDS="amd64"
+IUSE="headless-awt"
 
 RDEPEND="|| (
-		dev-java/oracle-jdk-bin:1.8
-		dev-java/openjdk-bin:8
-		dev-java/openjdk:8
-		dev-java/icedtea-bin:8
-		dev-java/icedtea:8
+		dev-java/oracle-jdk-bin:1.8[headless-awt=]
+		dev-java/openjdk-bin:8[headless-awt=]
+		dev-java/openjdk:8[headless-awt=]
+		dev-java/icedtea-bin:8[headless-awt=]
+		dev-java/icedtea:8[headless-awt=]
 )"
