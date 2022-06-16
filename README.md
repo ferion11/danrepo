@@ -22,7 +22,6 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * media-gfx/mtpaint - Simple GTK+2 painting program.
 * x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit.
 * gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
-* net-misc/zsync2 - zsync2 is one improved version of zsync.
 * media-gfx/mirage - A fast and simple image viewer based on python and GTK+ (python3 version).
 * media-gfx/fragment - Fragment is an exceptionally powerful, versatile and functional image viewer.
 * www-client/brave-bin - Brave Web Browser binary.
