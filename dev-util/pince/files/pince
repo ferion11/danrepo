@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd /usr/share/PINCE
-sudo -E python3 PINCE.py
