@@ -3,7 +3,9 @@
 
 EAPI=7
 
-inherit git-r3
+PYTHON_COMPAT=( python3_{8,9,10} )
+
+inherit python-single-r1 git-r3
 
 DESCRIPTION="PINCE is a front-end/reverse engineering tool for GDB."
 HOMEPAGE="https://github.com/korcankaraokcu/PINCE"
