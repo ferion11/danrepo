@@ -6,9 +6,9 @@ EAPI=7
 BRAVE_PN="${PN/-bin/}"
 
 CHROMIUM_LANGS="
-	am ar bg bn ca cs da de el en-GB en-US es es-419 et fa fi fil fr gu he hi
+	af am ar bg bn ca cs da de el en-GB en-US es es-419 et fa fi fil fr gu he hi
 	hr hu id it ja kn ko lt lv ml mr ms nb nl pl pt-BR pt-PT ro ru sk sl sr sv
-	sw ta te th tr uk vi zh-CN zh-TW
+	sw ta te th tr uk ur vi zh-CN zh-TW
 "
 
 inherit chromium-2 desktop xdg-utils unpacker
@@ -43,6 +43,7 @@ RDEPEND="
 	x11-libs/libXinerama
 	dev-libs/glib
 	dev-libs/nss
+	dev-libs/wayland
 	dev-libs/nspr
 	net-print/cups
 	sys-apps/dbus
@@ -54,8 +55,10 @@ RDEPEND="
 	dev-libs/atk
 	app-accessibility/at-spi2-core
 	app-accessibility/at-spi2-atk
+	x11-libs/libdrm
 	x11-libs/gtk+
 	x11-libs/gdk-pixbuf
+	x11-libs/libxkbcommon
 	dev-libs/libffi
 	dev-libs/libpcre
 	net-libs/gnutls
