@@ -1,23 +1,21 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
-
-PYTHON_COMPAT=( python3_{8,9,10} )
+EAPI=8
+PYTHON_COMPAT=( python3_{8..11} )
 
 inherit autotools python-single-r1 git-r3
 
 DESCRIPTION="Locate and modify variables in executing processes"
 HOMEPAGE="https://github.com/scanmem/scanmem"
-EGIT_REPO_URI="https://github.com/scanmem/scanmem.git"
-EGIT_CLONE_TYPE="shallow"
+EGIT_REPO_URI="https://github.com/scanmem/scanmem"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="gui static-libs"
 
-DEPEND="sys-libs/readline:0="
+DEPEND="sys-libs/readline:="
 RDEPEND="${DEPEND}
 	gui? (
 		${PYTHON_DEPS}
@@ -33,14 +31,13 @@ pkg_setup() {
 
 src_prepare() {
 	default
-
 	sed -i "/CFLAGS/d" Makefile.am || die
-
 	eautoreconf
 }
 
 src_configure() {
 	local myeconfargs=(
+		--docdir="/usr/share/doc/${PF}"
 		--with-readline
 		$(use_enable gui)
 		$(use_enable static-libs static)
@@ -50,12 +47,10 @@ src_configure() {
 
 src_install() {
 	default
-
 	if use gui ; then
 		docinto gui
 		dodoc gui/{README,TODO}
-		python_fix_shebang "${ED}"
+		python_fix_shebang "${D}"
 	fi
-
 	find "${ED}" -type f -name "*.la" -delete || die
 }
