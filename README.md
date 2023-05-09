@@ -23,7 +23,6 @@ Afterwards, simply run `emerge --sync`, and Portage should seamlessly make all o
 * x11-misc/gromit-mpx - Gromit-MPX is a multi-pointer GTK3 port of the original Gromit.
 * gnome-extra/yad - Yet Another Dialog. A tool for creating graphical dialogs from shell scripts. Fork of zenity.
 * media-gfx/mirage - A fast and simple image viewer based on python and GTK+ (python3 version).
-* media-gfx/fragment - Fragment is an exceptionally powerful, versatile and functional image viewer.
 * www-client/brave-bin - Brave Web Browser binary.
 * media-fonts/ttf-wps-fonts - These are the symbol fonts required by app-office/wps-office.
 * media-fonts/catamaran - Catamaran is a 9 weight Tamil type-family. [See here](https://fonts.google.com/specimen/Catamaran)
