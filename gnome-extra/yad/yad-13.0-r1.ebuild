@@ -1,8 +1,8 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
-inherit eutils xdg-utils gnome2-utils
+EAPI=7
+inherit xdg-utils gnome2-utils
 
 DESCRIPTION="A tool for creating graphical dialogs from shell scripts. Fork of zenity."
 HOMEPAGE="https://github.com/v1cont/yad"
@@ -22,15 +22,6 @@ DEPEND="${RDEPEND}
 		sys-devel/gettext
 		dev-util/intltool
 		app-arch/xz-utils"
-
-src_prepare() {
-	# apply user patchs
-	eapply_user
-}
-
-src_configure() {
-	econf
-}
 
 pkg_postinst() {
 	xdg_icon_cache_update
