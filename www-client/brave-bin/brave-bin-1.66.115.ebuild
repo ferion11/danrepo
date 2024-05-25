@@ -23,61 +23,37 @@ SLOT="0"
 KEYWORDS="amd64"
 
 RDEPEND="
-	${DEPEND}
-	dev-libs/libpthread-stubs
+	>=app-accessibility/at-spi2-core-2.46.0:2
+	dev-libs/expat
+	dev-libs/glib:2
+	dev-libs/nspr
+	dev-libs/nss
+	media-libs/alsa-lib
+	media-libs/mesa[gbm(+)]
+	net-misc/curl
+	net-print/cups
+	sys-apps/dbus
+	sys-libs/glibc
+	x11-libs/cairo
+	x11-libs/gdk-pixbuf
+	x11-libs/gtk+:3
+	x11-libs/libdrm
 	x11-libs/libxcb
+	x11-libs/libxkbcommon
+	x11-libs/libxshmfence
+	x11-libs/libX11
 	x11-libs/libXcomposite
-	x11-libs/libXcursor
 	x11-libs/libXdamage
 	x11-libs/libXext
 	x11-libs/libXfixes
-	x11-libs/libXi
-	x11-libs/libXrender
-	x11-libs/libXtst
-	x11-libs/libxshmfence
-	x11-libs/libXxf86vm
-	x11-libs/libXScrnSaver
 	x11-libs/libXrandr
-	x11-libs/libXau
-	x11-libs/libXdmcp
-	x11-libs/libXinerama
-	dev-libs/glib
-	dev-libs/nss
-	dev-libs/wayland
-	dev-libs/nspr
-	net-print/cups
-	sys-apps/dbus
-	dev-libs/expat
-	media-libs/alsa-lib
 	x11-libs/pango
-	x11-libs/cairo
-	dev-libs/gobject-introspection
-	dev-libs/atk
-	app-accessibility/at-spi2-core
-	app-accessibility/at-spi2-atk
-	x11-libs/libdrm
-	x11-libs/gtk+
-	x11-libs/gdk-pixbuf
-	x11-libs/libxkbcommon
-	dev-libs/libffi
-	dev-libs/libpcre
-	net-libs/gnutls
-	sys-libs/zlib
-	dev-libs/fribidi
-	media-libs/harfbuzz
-	media-libs/fontconfig
-	media-libs/freetype
-	x11-libs/pixman
-	media-libs/libpng
-	media-libs/libepoxy
-	dev-libs/libbsd
-	dev-libs/libunistring
-	dev-libs/libtasn1
-	dev-libs/nettle
-	dev-libs/gmp
-	net-dns/libidn2
-	media-gfx/graphite2
-	app-arch/bzip2
+	qt5? (
+		dev-qt/qtcore:5
+		dev-qt/qtgui:5[X]
+		dev-qt/qtwidgets:5
+	)
+	qt6? ( dev-qt/qtbase:6[gui,widgets] )
 "
 
 QA_PREBUILT="*"
