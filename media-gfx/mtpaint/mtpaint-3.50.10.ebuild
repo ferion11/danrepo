@@ -8,7 +8,7 @@ inherit xdg-utils
 DESCRIPTION="Simple GTK+2 painting program"
 HOMEPAGE="https://github.com/wjaguar/mtPaint"
 
-EGIT_COMMIT="199472ad6a4ecee6c8583fb5a504a2e99712b4fc"
+EGIT_COMMIT="a0e749d77ae9944974b0a7a98b479052141bd7bb"
 SRC_URI="https://github.com/wjaguar/mtPaint/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
 RESTRICT="primaryuri"
 
