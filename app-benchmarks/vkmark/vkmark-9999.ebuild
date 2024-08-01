@@ -22,6 +22,7 @@ DEPEND="
 	x11-libs/xcb-util-wm
 	x11-libs/xcb-util-xrm
 	media-libs/assimp
+	media-libs/glm
 "
 RDEPEND="${DEPEND}"
 BDEPEND="
