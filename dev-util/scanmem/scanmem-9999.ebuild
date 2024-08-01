@@ -12,7 +12,6 @@ EGIT_REPO_URI="https://github.com/scanmem/scanmem"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 IUSE="gui static-libs"
 
 DEPEND="sys-libs/readline:="

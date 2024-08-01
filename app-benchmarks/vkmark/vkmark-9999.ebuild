@@ -11,7 +11,6 @@ EGIT_REPO_URI="https://github.com/vkmark/vkmark.git"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
@@ -22,7 +21,7 @@ DEPEND="
 	x11-libs/xcb-util-keysyms
 	x11-libs/xcb-util-wm
 	x11-libs/xcb-util-xrm
-	media-libs/libassimp
+	media-libs/assimp
 "
 RDEPEND="${DEPEND}"
 BDEPEND="
