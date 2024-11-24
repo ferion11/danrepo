@@ -1,29 +1,31 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-BRAVE_PN="${PN/-bin/}"
+CHROMIUM_LANGS="af am ar bg bn ca cs da de el en-GB en-US es es-419 et fa fi fil fr
+	gu he hi hr hu id it ja kn ko lt lv ml mr ms nb nl pl pt-BR pt-PT ro ru sk
+	sl sr sv sw ta te th tr uk ur vi zh-CN zh-TW"
 
-CHROMIUM_LANGS="
-	af am ar bg bn ca cs da de el en-GB en-US es es-419 et fa fi fil fr gu he hi
-	hr hu id it ja kn ko lt lv ml mr ms nb nl pl pt-BR pt-PT ro ru sk sl sr sv
-	sw ta te th tr uk ur vi zh-CN zh-TW
-"
+inherit chromium-2 desktop pax-utils unpacker xdg
 
-inherit chromium-2 desktop xdg-utils unpacker
+MY_PN=${PN/-bin}-browser
+DESCRIPTION="Web browser that blocks ads and trackers by default"
+HOMEPAGE="https://brave.com/"
+SRC_URI="https://github.com/${PN/-bin}/${MY_PN}/releases/download/v${PV}/${MY_PN}_${PV}_amd64.deb"
 
-DESCRIPTION="Brave Web Browser"
-HOMEPAGE="https://brave.com"
-SRC_URI="https://github.com/brave/brave-browser/releases/download/v${PV}/brave-browser_${PV}_amd64.deb"
-RESTRICT="primaryuri"
+S=${WORKDIR}
 
 LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="-* amd64"
+
+IUSE="qt5 qt6"
+RESTRICT="bindist strip"
 
 RDEPEND="
 	>=app-accessibility/at-spi2-core-2.46.0:2
+	app-misc/ca-certificates
 	dev-libs/expat
 	dev-libs/glib:2
 	dev-libs/nspr
@@ -48,58 +50,67 @@ RDEPEND="
 	x11-libs/libXfixes
 	x11-libs/libXrandr
 	x11-libs/pango
+	qt5? (
+		dev-qt/qtcore:5
+		dev-qt/qtgui:5[X]
+		dev-qt/qtwidgets:5
+	)
+	qt6? ( dev-qt/qtbase:6[gui,widgets] )
 "
 
 QA_PREBUILT="*"
+BRAVE_HOME="opt/brave.com/brave"
 
-S="${WORKDIR}/opt/brave.com/brave"
-
-src_unpack() {
-	unpack_deb ${A}
+pkg_setup() {
+	chromium_suid_sandbox_check_kernel_config
 }
 
-src_prepare() {
-	pushd "${S}/locales" > /dev/null || die
-		chromium_remove_language_paks
-	popd > /dev/null || die
-
-	default
+src_unpack() {
+	:
 }
 
 src_install() {
-	declare BRAVE_HOME=/opt/${BRAVE_PN}
+	dodir /
+	cd "${ED}" || die
+	unpacker
 
-	dodir ${BRAVE_HOME%/*}
+	# The appdata directory is deprecated.
+	mv usr/share/{appdata,metainfo}/ || die
 
-	insinto ${BRAVE_HOME}
-		doins -r *
+	# Remove cron job and menu for updating from Debian repos.
+	rm -r ${BRAVE_HOME}/cron/ || die
+	rm -r etc usr/share/menu || die
 
-	exeinto ${BRAVE_HOME}
-		doexe brave
-		doexe brave-browser
-		doexe chrome-sandbox
-		#doexe crashpad_handler
-		doexe chrome_crashpad_handler
+	# Rename docs directory to our needs.
+	mv usr/share/doc/${MY_PN} usr/share/doc/${PF} || die
 
-	dosym ${BRAVE_HOME}/brave /usr/bin/${PN} || die
+	# Decompress the docs.
+	gzip -d usr/share/doc/${PF}/changelog.gz || die
+	gzip -d usr/share/man/man1/${MY_PN}-stable.1.gz || die
+	if [[ -L usr/share/man/man1/brave-browser.1.gz ]]; then
+	    rm usr/share/man/man1/brave-browser.1.gz || die
+	    dosym ${MY_PN}-stable.1 usr/share/man/man1/brave-browser.1
+	fi
 
-	newicon "${FILESDIR}/braveAbout.png" "${PN}.png" || die
-	newicon -s 128 "${FILESDIR}/braveAbout.png" "${PN}.png" || die
+	# Remove unused language packs
+	pushd "${BRAVE_HOME}/locales" > /dev/null || die
+	chromium_remove_language_paks
+	popd > /dev/null || die
 
-	# install-xattr doesnt approve using domenu or doins from FILESDIR
-	cp "${FILESDIR}"/${PN}.desktop "${S}"
-	domenu "${S}"/${PN}.desktop
-}
+	if ! use qt5; then
+		rm "${BRAVE_HOME}/libqt5_shim.so" || die
+	fi
+	if ! use qt6; then
+		rm "${BRAVE_HOME}/libqt6_shim.so" || die
+	fi
 
-pkg_postinst() {
-	xdg_desktop_database_update
-	xdg_mimeinfo_database_update
-	xdg_icon_cache_update
-	elog "To import your browser data use Settings -> People -> Import Bookmarks and Settings."
-}
+	local logo size
+	for logo in "${ED}"/${BRAVE_HOME}/product_logo_*.png; do
+	    size=${logo##*_}
+		size=${size%.*}
+		newicon -s "${size}" "${logo}" ${PN/-bin}.png
+	done
 
-pkg_postrm() {
-	xdg_desktop_database_update
-	xdg_mimeinfo_database_update
-	xdg_icon_cache_update
+	pax-mark m "${BRAVE_HOME}/brave"
+	fperms 4711 "/${BRAVE_HOME}/chrome-sandbox"
 }
