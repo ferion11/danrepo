@@ -28,6 +28,7 @@ RDEPEND="
 	>=dev-python/pycairo-1.0.0[${PYTHON_USEDEP}]
 	>=media-libs/gexiv2-0.10[introspection]
 	>=media-gfx/exiv2-0.27
+	media-libs/gexiv2:0
 	>=x11-libs/gtk+-3.24.0:3[introspection]
 	x11-libs/libX11
 "
